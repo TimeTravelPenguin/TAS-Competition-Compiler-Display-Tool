@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TASCompDisplay", "TASCompDisplay\TASCompDisplay.csproj", "{B3608B09-C7CF-42F1-931A-BB6B37B07952}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3608B09-C7CF-42F1-931A-BB6B37B07952}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3608B09-C7CF-42F1-931A-BB6B37B07952}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3608B09-C7CF-42F1-931A-BB6B37B07952}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3608B09-C7CF-42F1-931A-BB6B37B07952}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {18FBBB88-BB0B-4620-A8C4-4F397C6DB3FA}
+	EndGlobalSection
+EndGlobal
