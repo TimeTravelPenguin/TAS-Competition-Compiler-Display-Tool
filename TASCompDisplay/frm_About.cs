@@ -19,7 +19,7 @@ namespace TASCompDisplay
 
 		private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
 		{
-			System.Diagnostics.Process.Start("https://pengu.space");
+			System.Diagnostics.Process.Start("https://github.com/TimeTravelPenguin/TAS-Competition-Compiler-Display-Tool");
 		}
 
 		private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
