@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 
 namespace TASCompDisplay
 {
-	class Competitor
+	public class Competitor
 	{
+		public int Rank { get; set; }
 		public string Username { get; set; }
-		public string StartFrame { get; set; }
-		public string EndFrame { get; set; }
-		public string Rerecords { get; set; }
+		public int StartFrame { get; set; }
+		public int EndFrame { get; set; }
+		public int Rerecords { get; set; }
 		public string DQ { get; set; }
 		public string Comments { get; set; }
 
-		public Competitor(string username, string startframe, string endframe, string rerecords, string dq, string comments)
+		public Competitor(int rank, string username, int startframe, int endframe, int rerecords, string dq, string comments)
 		{
+			Rank = rank;
 			Username = username;
 			StartFrame = startframe;
 			EndFrame = endframe;
