@@ -30,21 +30,16 @@ namespace TASCompDisplay
 		{
 			bool readyToLoad;
 			string path;
+			string contents;
 
-			(readyToLoad, path) = f.Load();
+			(readyToLoad, path, contents) = f.Load();
 			toolStripStatusLabel_OpenedFile.Text = f.filePath;
 
 			if (readyToLoad)
 			{
 				try
 				{
-
 					ResetAll();
-
-					string contents = System.IO.File.ReadAllText(path);
-
-					// base64 decode
-					contents = Base64Decode(contents);
 
 					List<Competitor> competitionList = JsonConvert.DeserializeObject<List<Competitor>>(contents);
 
@@ -174,9 +169,6 @@ namespace TASCompDisplay
 
 			var savedata = JsonConvert.SerializeObject(CompetitionList);
 
-			// base64 encode
-			savedata = Base64Encode(savedata);
-
 			f.Save(savedata);
 		}
 
@@ -202,9 +194,10 @@ namespace TASCompDisplay
 				string username = $"{dataGrid_TASData.Rows[row].Cells[1].Value}";
 
 
-				// unchecked values are = "" and not "false"
-				string dq = $"{dataGrid_TASData.Rows[row].Cells[5].Value}";
-				dq = (dq == "") ? "false" : dq;
+				// fix for unchecked values being = "" and not "false"
+				bool dq = (bool)dataGrid_TASData.Rows[row].Cells[5].Value;
+
+				//MessageBox.Show(dq.ToString());
 
 				string comments = $"{dataGrid_TASData.Rows[row].Cells[6].Value}";
 
@@ -250,18 +243,6 @@ namespace TASCompDisplay
 			about.ShowDialog();
 		}
 
-		public static string Base64Encode(string plainText)
-		{
-			var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-			return Convert.ToBase64String(plainTextBytes);
-		}
-
-		public static string Base64Decode(string base64EncodedData)
-		{
-			var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
-			return Encoding.UTF8.GetString(base64EncodedBytes);
-		}
-
 		public void GridSortRank()
 		{
 			List<Competitor> compList = CompObjectCompile();
@@ -274,14 +255,14 @@ namespace TASCompDisplay
 			// if a DQ'd run, set to last place
 			for (int i = 0; i < SortedCompList.Count(); i++)
 			{
-				if (SortedCompList[i].DQ == "true")
+				if (SortedCompList[i].DQ == true)
 				{
 					SortedCompList[i].Rank = SortedCompList.Count();
 				}
 
-				else if (SortedCompList[i].DQ == "flase")
+				else if (SortedCompList[i].DQ == false)
 				{
-					SortedCompList[i].Rank = i + 1;
+					SortedCompList[i].Rank = i;
 				}
 
 			}
@@ -295,7 +276,7 @@ namespace TASCompDisplay
 				// check if dup. If so, set rank to rank of previous item
 				// ignores DQs
 				// Does this work?????? Apparently?
-				if (time == prevtime && SortedCompList[i].DQ == "true")
+				if (time == prevtime && SortedCompList[i].DQ == true)
 					SortedCompList[i].Rank = SortedCompList[i - 1].Rank;
 			}
 
@@ -323,7 +304,7 @@ namespace TASCompDisplay
 
 			// get number of nonDQs
 			foreach (var item in data)
-				if (item.DQ == "false") { nonDQs++; }
+				if (item.DQ == false) { nonDQs++; }
 
 			// set bold limit
 			if (nonDQs < 5)
@@ -332,7 +313,7 @@ namespace TASCompDisplay
 			// Non DQs
 			foreach (var item in data)
 			{
-				if (item.DQ == "false")
+				if (item.DQ == false)
 				{
 					temp = $"{numConv.AddOrdinal(item.Rank)}. {item.Username} {numConv.FormatTime(item.EndFrame - item.StartFrame)}";
 
@@ -352,7 +333,7 @@ namespace TASCompDisplay
 			// DQs
 			foreach (var item in data)
 			{
-				if (item.DQ == "true")
+				if (item.DQ == true)
 				{
 					output += $"DQ. {item.Username} {item.Comments}\r\n";
 				}
@@ -362,6 +343,27 @@ namespace TASCompDisplay
 			frm_PlainTextPopup ptp = new frm_PlainTextPopup();
 			ptp.displayText = output;
 			ptp.ShowDialog();
+		}
+
+		private void scorePointsToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var confirmResult = MessageBox.Show("Are you sure you wish to score points?",
+									 "Score confimation",
+									 MessageBoxButtons.YesNo);
+
+			if (confirmResult == DialogResult.Yes)
+				scoreLeaderboard();
+			else { }
+		}
+
+		public void scoreLeaderboard()
+		{
+			// Ask if existing file exists
+			// Read points from file
+			// Add points, and add to pre-existing points if they exist
+			// Save
+
+
 		}
 	}
 }

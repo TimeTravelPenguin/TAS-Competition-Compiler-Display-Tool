@@ -12,8 +12,9 @@ namespace TASCompDisplay
 	{
 		public string fileName { get; set; }
 		public string filePath { get; set; }
+		public string contents { get; set; }
 
-		public (bool, string) Load()
+		public (bool, string, string) Load()
 		{
 			OpenFileDialog ofd = new OpenFileDialog();
 			ofd.Filter = "TAS Comp File (*.TASc)|*.TASc";
@@ -25,30 +26,54 @@ namespace TASCompDisplay
 				filePath = Path.GetFullPath(fileName);
 				string extension = Path.GetExtension(filePath);
 
-				if (extension == ".txt" || extension == ".TASc") { return (true, filePath); }
+				if (extension == ".txt" || extension == ".TASc")
+				{
+					// base64 decode
+					contents = Base64Decode(System.IO.File.ReadAllText(filePath));
+					return (true, filePath, contents);
+				}
 				else
 				{
 					fileName = "";
 					filePath = "";
 					MessageBox.Show("Please open a valid .TASc file", "Error opening file...");
-					return (false, filePath);
+					return (false, filePath, "");
 				}
 			}
 			catch { fileName = "No File Loaded..."; }
-			return (false, filePath);
+			return (false, filePath, "");
 		}
 
 		public void Save(string savedata)
 		{
+			// base64 encode
+			savedata = Base64Encode(savedata);
+
 			SaveFileDialog sfd = new SaveFileDialog();
 			sfd.Filter = "TAS Comp File (*.TASc)|*.TASc";
 			sfd.DefaultExt = "TASc";
 			sfd.AddExtension = true;
 			sfd.ShowDialog();
+			try
+			{
+				string path = Path.GetFullPath(sfd.FileName);
 
-			string path = Path.GetFullPath(sfd.FileName);
+				System.IO.File.WriteAllText(path, savedata);
+			}
+			catch (Exception) { }
+			
+		}
 
-			System.IO.File.WriteAllText(path, savedata);
+		public static string Base64Encode(string plainText)
+		{
+			var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+			return Convert.ToBase64String(plainTextBytes);
+		}
+
+		public static string Base64Decode(string base64EncodedData)
+		{
+			var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
+			return Encoding.UTF8.GetString(base64EncodedBytes);
 		}
 	}
 }

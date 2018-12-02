@@ -13,10 +13,10 @@ namespace TASCompDisplay
 		public int StartFrame { get; set; }
 		public int EndFrame { get; set; }
 		public int Rerecords { get; set; }
-		public string DQ { get; set; }
+		public bool DQ { get; set; }
 		public string Comments { get; set; }
 
-		public Competitor(int rank, string username, int startframe, int endframe, int rerecords, string dq, string comments)
+		public Competitor(int rank, string username, int startframe, int endframe, int rerecords, bool dq, string comments)
 		{
 			Rank = rank;
 			Username = username;
