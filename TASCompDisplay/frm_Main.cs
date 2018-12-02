@@ -126,8 +126,13 @@ namespace TASCompDisplay
 
 			if (checkBox_DQ.Checked)
 			{
-				row.Cells[5].Value = "true";
+				row.Cells[5].Value = true;
 				row.Cells[6].Value = DQString();
+			}
+			else
+			{
+				row.Cells[5].Value = false;
+				row.Cells[6].Value = "";
 			}
 
 			dataGrid_TASData.Rows.Add(row);
@@ -192,9 +197,7 @@ namespace TASCompDisplay
 				catch { rerecs = -1; }
 
 				string username = $"{dataGrid_TASData.Rows[row].Cells[1].Value}";
-
-
-				// fix for unchecked values being = "" and not "false"
+				
 				bool dq = (bool)dataGrid_TASData.Rows[row].Cells[5].Value;
 
 				//MessageBox.Show(dq.ToString());
