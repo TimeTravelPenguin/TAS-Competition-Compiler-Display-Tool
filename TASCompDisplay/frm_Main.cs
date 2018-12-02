@@ -120,7 +120,7 @@ namespace TASCompDisplay
 			// todo check for dup usernames
 
 			DataGridViewRow row = (DataGridViewRow)dataGrid_TASData.Rows[0].Clone();
-			
+
 			row.Cells[1].Value = txt_addUsername.Text.Trim();
 			row.Cells[2].Value = txt_addStartFrame.Text.Trim();
 			row.Cells[3].Value = txt_addEndFrame.Text.Trim();
@@ -183,19 +183,7 @@ namespace TASCompDisplay
 
 			for (int row = 0; row < dataGrid_TASData.Rows.Count - 1; row++)
 			{
-				/*
-				// for null obects, set item = 0
-				List<int> nums = new List<int>(new int[] { 0, 2, 3, 4 });
-				foreach (int i in nums)
-				{
-					var item = dataGrid_TASData.Rows[row].Cells[i].Value;
-					// test item (it is an object)
-					// if not an int (not convertable to int?), set equal to zero
-				}
-				*/
-				int rank = 0;
-				try { rank = Convert.ToInt32(dataGrid_TASData.Rows[row].Cells[0].Value); }
-				catch { rank = -1; }
+				int rank = row + 1;
 
 				int start = 0;
 				try { start = Convert.ToInt32(dataGrid_TASData.Rows[row].Cells[2].Value); }
@@ -271,7 +259,7 @@ namespace TASCompDisplay
 			return Encoding.UTF8.GetString(base64EncodedBytes);
 		}
 
-		public void GridSortRank()  // Needs fixing
+		public void GridSortRank()  // Needs fixing. Auto sorts, but if something is 1st, the rank isn't sorted the first time, but its position is fine
 		{
 			List<Competitor> compList = CompObjectCompile();
 			Dictionary<string, int> timeDict = new Dictionary<string, int>();
@@ -285,10 +273,7 @@ namespace TASCompDisplay
 			{
 				int time = SortedCompList[i].EndFrame - SortedCompList[i].StartFrame;
 				int prevtime = SortedCompList[i - 1].EndFrame - SortedCompList[i - 1].StartFrame;
-				
-				// set rank = i
-				SortedCompList[i].Rank = i;
-				
+
 				// check if dup. If so, set rank to rank of previous item
 				if (time == prevtime)
 					SortedCompList[i].Rank = SortedCompList[i - 1].Rank;
@@ -296,7 +281,6 @@ namespace TASCompDisplay
 
 			dataGrid_TASData.Rows.Clear();
 			WriteToDataGrid(SortedCompList);
-
 		}
 
 		private void rerankBoardToolStripMenuItem_Click(object sender, EventArgs e)
