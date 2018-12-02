@@ -76,6 +76,9 @@ namespace TASCompDisplay
 
 				dataGrid_TASData.Rows.Add(row);
 			}
+			
+			// Sort by rank
+			dataGrid_TASData.Sort(dataGrid_TASData.Columns[0], ListSortDirection.Ascending);
 		}
 
 		private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -259,7 +262,7 @@ namespace TASCompDisplay
 			return Encoding.UTF8.GetString(base64EncodedBytes);
 		}
 
-		public void GridSortRank()  // Needs fixing. Auto sorts, but if something is 1st, the rank isn't sorted the first time, but its position is fine
+		public void GridSortRank()
 		{
 			List<Competitor> compList = CompObjectCompile();
 			Dictionary<string, int> timeDict = new Dictionary<string, int>();
@@ -267,7 +270,22 @@ namespace TASCompDisplay
 			// sort compList 
 			List<Competitor> SortedCompList = compList.OrderBy(x => x.EndFrame - x.StartFrame).ToList();
 
-			// set rank = i &
+			// set rank = i
+			// if a DQ'd run, set to last place
+			for (int i = 0; i < SortedCompList.Count(); i++)
+			{
+				if (SortedCompList[i].DQ == "true")
+				{
+					SortedCompList[i].Rank = SortedCompList.Count();
+				}
+
+				else if (SortedCompList[i].DQ == "flase")
+				{
+					SortedCompList[i].Rank = i + 1;
+				}
+
+			}
+
 			// check and fix ranks in instances of ties
 			for (int i = 1; i < SortedCompList.Count(); i++)
 			{
@@ -275,9 +293,12 @@ namespace TASCompDisplay
 				int prevtime = SortedCompList[i - 1].EndFrame - SortedCompList[i - 1].StartFrame;
 
 				// check if dup. If so, set rank to rank of previous item
-				if (time == prevtime)
+				// ignores DQs
+								// Does this work?????? Apparently?
+				if (time == prevtime && SortedCompList[i].DQ == "true")
 					SortedCompList[i].Rank = SortedCompList[i - 1].Rank;
 			}
+
 
 			dataGrid_TASData.Rows.Clear();
 			WriteToDataGrid(SortedCompList);
