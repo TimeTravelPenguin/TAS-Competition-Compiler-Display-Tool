@@ -76,7 +76,7 @@ namespace TASCompDisplay
 
 				dataGrid_TASData.Rows.Add(row);
 			}
-			
+
 			// Sort by rank
 			dataGrid_TASData.Sort(dataGrid_TASData.Columns[0], ListSortDirection.Ascending);
 		}
@@ -294,7 +294,7 @@ namespace TASCompDisplay
 
 				// check if dup. If so, set rank to rank of previous item
 				// ignores DQs
-								// Does this work?????? Apparently?
+				// Does this work?????? Apparently?
 				if (time == prevtime && SortedCompList[i].DQ == "true")
 					SortedCompList[i].Rank = SortedCompList[i - 1].Rank;
 			}
@@ -307,6 +307,61 @@ namespace TASCompDisplay
 		private void rerankBoardToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			GridSortRank();
+		}
+
+		private void exportPlainTextToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var data = CompObjectCompile();
+
+			NumberConverter numConv = new NumberConverter();
+
+			string output = "**__Task XX Results:__**\r\n";
+			string temp;
+
+			int boldLimit = 5;
+			double nonDQs = 0;
+
+			// get number of nonDQs
+			foreach (var item in data)
+				if (item.DQ == "false") { nonDQs++; }
+
+			// set bold limit
+			if (nonDQs < 5)
+				boldLimit = (int)Math.Ceiling(nonDQs / 2);
+
+			// Non DQs
+			foreach (var item in data)
+			{
+				if (item.DQ == "false")
+				{
+					temp = $"{numConv.AddOrdinal(item.Rank)}. {item.Username} {numConv.FormatTime(item.EndFrame - item.StartFrame)}";
+
+					if (item.Rank <= boldLimit)
+					{
+						output += $"**{temp}**\r\n";
+					}
+					else
+					{
+						output += $"{temp}\r\n";
+					}
+				}
+			}
+
+			output += "\r\n";
+
+			// DQs
+			foreach (var item in data)
+			{
+				if (item.DQ == "true")
+				{
+					output += $"DQ. {item.Username} {item.Comments}\r\n";
+				}
+			}
+
+			// Display in new popup form
+			frm_PlainTextPopup ptp = new frm_PlainTextPopup();
+			ptp.displayText = output;
+			ptp.ShowDialog();
 		}
 	}
 }

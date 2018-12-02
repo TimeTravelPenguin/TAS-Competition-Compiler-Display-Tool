@@ -35,6 +35,8 @@
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.rerankBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportPlainTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel_OpenedFile = new System.Windows.Forms.ToolStripStatusLabel();
@@ -58,8 +60,6 @@
 			this.lbl_addRerecords = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dataGrid_TASData = new System.Windows.Forms.DataGridView();
-			this.btn_AddCompetitor = new System.Windows.Forms.Button();
-			this.rerankBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.StartingFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,6 +67,7 @@
 			this.Rerecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DQ = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.DQReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.btn_AddCompetitor = new System.Windows.Forms.Button();
 			this.menuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox_DQReasons.SuspendLayout();
@@ -78,6 +79,7 @@
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.aboutToolStripMenuItem,
+            this.exportPlainTextToolStripMenuItem,
             this.rerankBoardToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
@@ -130,6 +132,20 @@
 			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
 			this.aboutToolStripMenuItem.Text = "&About";
 			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+			// 
+			// rerankBoardToolStripMenuItem
+			// 
+			this.rerankBoardToolStripMenuItem.Name = "rerankBoardToolStripMenuItem";
+			this.rerankBoardToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+			this.rerankBoardToolStripMenuItem.Text = "&Rerank Board";
+			this.rerankBoardToolStripMenuItem.Click += new System.EventHandler(this.rerankBoardToolStripMenuItem_Click);
+			// 
+			// exportPlainTextToolStripMenuItem
+			// 
+			this.exportPlainTextToolStripMenuItem.Name = "exportPlainTextToolStripMenuItem";
+			this.exportPlainTextToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
+			this.exportPlainTextToolStripMenuItem.Text = "&Export Plain Text";
+			this.exportPlainTextToolStripMenuItem.Click += new System.EventHandler(this.exportPlainTextToolStripMenuItem_Click);
 			// 
 			// statusStrip1
 			// 
@@ -351,23 +367,6 @@
 			this.dataGrid_TASData.Size = new System.Drawing.Size(634, 328);
 			this.dataGrid_TASData.TabIndex = 17;
 			// 
-			// btn_AddCompetitor
-			// 
-			this.btn_AddCompetitor.Location = new System.Drawing.Point(93, 168);
-			this.btn_AddCompetitor.Name = "btn_AddCompetitor";
-			this.btn_AddCompetitor.Size = new System.Drawing.Size(132, 25);
-			this.btn_AddCompetitor.TabIndex = 18;
-			this.btn_AddCompetitor.Text = "Add";
-			this.btn_AddCompetitor.UseVisualStyleBackColor = true;
-			this.btn_AddCompetitor.Click += new System.EventHandler(this.btn_AddCompetitor_Click);
-			// 
-			// rerankBoardToolStripMenuItem
-			// 
-			this.rerankBoardToolStripMenuItem.Name = "rerankBoardToolStripMenuItem";
-			this.rerankBoardToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
-			this.rerankBoardToolStripMenuItem.Text = "&Rerank Board";
-			this.rerankBoardToolStripMenuItem.Click += new System.EventHandler(this.rerankBoardToolStripMenuItem_Click);
-			// 
 			// Place
 			// 
 			this.Place.HeaderText = "Place";
@@ -409,6 +408,16 @@
 			this.DQReason.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.DQReason.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			this.DQReason.Width = 110;
+			// 
+			// btn_AddCompetitor
+			// 
+			this.btn_AddCompetitor.Location = new System.Drawing.Point(93, 168);
+			this.btn_AddCompetitor.Name = "btn_AddCompetitor";
+			this.btn_AddCompetitor.Size = new System.Drawing.Size(132, 25);
+			this.btn_AddCompetitor.TabIndex = 18;
+			this.btn_AddCompetitor.Text = "Add";
+			this.btn_AddCompetitor.UseVisualStyleBackColor = true;
+			this.btn_AddCompetitor.Click += new System.EventHandler(this.btn_AddCompetitor_Click);
 			// 
 			// fm_Main
 			// 
@@ -488,6 +497,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rerecords;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn DQ;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DQReason;
+		private System.Windows.Forms.ToolStripMenuItem exportPlainTextToolStripMenuItem;
 	}
 }
 
