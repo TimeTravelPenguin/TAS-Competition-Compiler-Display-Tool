@@ -10,9 +10,9 @@ namespace TASCompDisplay
 	{
 		public int Rank { get; set; }
 		public string Username { get; set; }
-		public int Score { get; set; }
+		public double Score { get; set; }
 
-		public Scores(int rank, string username, int score)
+		public Scores(int rank, string username, double score)
 		{
 			Rank = rank;
 			Username = username;

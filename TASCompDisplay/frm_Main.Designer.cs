@@ -1,6 +1,6 @@
 ﻿namespace TASCompDisplay
 {
-	partial class fm_Main
+	partial class frm_Main
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -32,11 +32,16 @@
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.competitionLeaderboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.pointLeaderboardToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.competitionLeaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.pointLeaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exportPlainTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.rerankBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.scorePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel_OpenedFile = new System.Windows.Forms.ToolStripStatusLabel();
@@ -60,22 +65,22 @@
 			this.lbl_addRerecords = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dataGrid_TASData = new System.Windows.Forms.DataGridView();
+			this.btn_AddCompetitor = new System.Windows.Forms.Button();
+			this.tab_DataGrids = new System.Windows.Forms.TabControl();
+			this.tab_CompLeaderboard = new System.Windows.Forms.TabPage();
+			this.tab_PointLeaderboard = new System.Windows.Forms.TabPage();
+			this.dataGrid_TASPoints = new System.Windows.Forms.DataGridView();
+			this.PointPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.PointUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.PointScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.StartingFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.EndingFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Frames = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Rerecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.DQ = new System.Windows.Forms.DataGridViewCheckBoxColumn();
 			this.DQReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.btn_AddCompetitor = new System.Windows.Forms.Button();
-			this.scorePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.tab_DataGrids = new System.Windows.Forms.TabControl();
-			this.tab_CompLeaderboard = new System.Windows.Forms.TabPage();
-			this.tab_PointLeaderboard = new System.Windows.Forms.TabPage();
-			this.dataGridView1 = new System.Windows.Forms.DataGridView();
-			this.PointPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.PointUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.PointScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox_DQReasons.SuspendLayout();
@@ -83,7 +88,7 @@
 			this.tab_DataGrids.SuspendLayout();
 			this.tab_CompLeaderboard.SuspendLayout();
 			this.tab_PointLeaderboard.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid_TASPoints)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip
@@ -96,7 +101,7 @@
             this.scorePointsToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(868, 24);
+			this.menuStrip.Size = new System.Drawing.Size(935, 24);
 			this.menuStrip.TabIndex = 1;
 			this.menuStrip.Text = "menuStrip1";
 			// 
@@ -120,17 +125,49 @@
 			// 
 			// openToolStripMenuItem
 			// 
+			this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.competitionLeaderboardToolStripMenuItem1,
+            this.pointLeaderboardToolStripMenuItem1});
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
 			this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
 			this.openToolStripMenuItem.Text = "&Open";
-			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+			// 
+			// competitionLeaderboardToolStripMenuItem1
+			// 
+			this.competitionLeaderboardToolStripMenuItem1.Name = "competitionLeaderboardToolStripMenuItem1";
+			this.competitionLeaderboardToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+			this.competitionLeaderboardToolStripMenuItem1.Text = "Competition Leaderboard";
+			this.competitionLeaderboardToolStripMenuItem1.Click += new System.EventHandler(this.competitionLeaderboardToolStripMenuItem1_Click);
+			// 
+			// pointLeaderboardToolStripMenuItem1
+			// 
+			this.pointLeaderboardToolStripMenuItem1.Name = "pointLeaderboardToolStripMenuItem1";
+			this.pointLeaderboardToolStripMenuItem1.Size = new System.Drawing.Size(210, 22);
+			this.pointLeaderboardToolStripMenuItem1.Text = "Point Leaderboard";
+			this.pointLeaderboardToolStripMenuItem1.Click += new System.EventHandler(this.pointLeaderboardToolStripMenuItem1_Click);
 			// 
 			// saveToolStripMenuItem
 			// 
+			this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.competitionLeaderboardToolStripMenuItem,
+            this.pointLeaderboardToolStripMenuItem});
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
 			this.saveToolStripMenuItem.Text = "&Save";
-			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+			// 
+			// competitionLeaderboardToolStripMenuItem
+			// 
+			this.competitionLeaderboardToolStripMenuItem.Name = "competitionLeaderboardToolStripMenuItem";
+			this.competitionLeaderboardToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+			this.competitionLeaderboardToolStripMenuItem.Text = "Competition Leaderboard";
+			this.competitionLeaderboardToolStripMenuItem.Click += new System.EventHandler(this.competitionLeaderboardToolStripMenuItem_Click);
+			// 
+			// pointLeaderboardToolStripMenuItem
+			// 
+			this.pointLeaderboardToolStripMenuItem.Name = "pointLeaderboardToolStripMenuItem";
+			this.pointLeaderboardToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+			this.pointLeaderboardToolStripMenuItem.Text = "Point Leaderboard";
+			this.pointLeaderboardToolStripMenuItem.Click += new System.EventHandler(this.pointLeaderboardToolStripMenuItem_Click);
 			// 
 			// exitToolStripMenuItem
 			// 
@@ -160,6 +197,13 @@
 			this.rerankBoardToolStripMenuItem.Text = "&Rerank Board";
 			this.rerankBoardToolStripMenuItem.Click += new System.EventHandler(this.rerankBoardToolStripMenuItem_Click);
 			// 
+			// scorePointsToolStripMenuItem
+			// 
+			this.scorePointsToolStripMenuItem.Name = "scorePointsToolStripMenuItem";
+			this.scorePointsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+			this.scorePointsToolStripMenuItem.Text = "&Score Points";
+			this.scorePointsToolStripMenuItem.Click += new System.EventHandler(this.scorePointsToolStripMenuItem_Click);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -167,7 +211,7 @@
             this.toolStripStatusLabel_OpenedFile});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 356);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(868, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(935, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -372,14 +416,87 @@
             this.Username,
             this.StartingFrame,
             this.EndingFrame,
+            this.Frames,
             this.Rerecords,
             this.DQ,
             this.DQReason});
 			this.dataGrid_TASData.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGrid_TASData.Location = new System.Drawing.Point(3, 3);
 			this.dataGrid_TASData.Name = "dataGrid_TASData";
-			this.dataGrid_TASData.Size = new System.Drawing.Size(623, 294);
+			this.dataGrid_TASData.Size = new System.Drawing.Size(678, 294);
 			this.dataGrid_TASData.TabIndex = 17;
+			this.dataGrid_TASData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGrid_TASData_CellContentClick);
+			// 
+			// btn_AddCompetitor
+			// 
+			this.btn_AddCompetitor.Location = new System.Drawing.Point(93, 168);
+			this.btn_AddCompetitor.Name = "btn_AddCompetitor";
+			this.btn_AddCompetitor.Size = new System.Drawing.Size(132, 25);
+			this.btn_AddCompetitor.TabIndex = 18;
+			this.btn_AddCompetitor.Text = "Add";
+			this.btn_AddCompetitor.UseVisualStyleBackColor = true;
+			this.btn_AddCompetitor.Click += new System.EventHandler(this.btn_AddCompetitor_Click);
+			// 
+			// tab_DataGrids
+			// 
+			this.tab_DataGrids.Controls.Add(this.tab_CompLeaderboard);
+			this.tab_DataGrids.Controls.Add(this.tab_PointLeaderboard);
+			this.tab_DataGrids.Location = new System.Drawing.Point(231, 27);
+			this.tab_DataGrids.Name = "tab_DataGrids";
+			this.tab_DataGrids.SelectedIndex = 0;
+			this.tab_DataGrids.Size = new System.Drawing.Size(692, 326);
+			this.tab_DataGrids.TabIndex = 19;
+			// 
+			// tab_CompLeaderboard
+			// 
+			this.tab_CompLeaderboard.Controls.Add(this.dataGrid_TASData);
+			this.tab_CompLeaderboard.Location = new System.Drawing.Point(4, 22);
+			this.tab_CompLeaderboard.Name = "tab_CompLeaderboard";
+			this.tab_CompLeaderboard.Padding = new System.Windows.Forms.Padding(3);
+			this.tab_CompLeaderboard.Size = new System.Drawing.Size(684, 300);
+			this.tab_CompLeaderboard.TabIndex = 0;
+			this.tab_CompLeaderboard.Text = "Competition Leaderboard";
+			this.tab_CompLeaderboard.UseVisualStyleBackColor = true;
+			// 
+			// tab_PointLeaderboard
+			// 
+			this.tab_PointLeaderboard.Controls.Add(this.dataGrid_TASPoints);
+			this.tab_PointLeaderboard.Location = new System.Drawing.Point(4, 22);
+			this.tab_PointLeaderboard.Name = "tab_PointLeaderboard";
+			this.tab_PointLeaderboard.Padding = new System.Windows.Forms.Padding(3);
+			this.tab_PointLeaderboard.Size = new System.Drawing.Size(629, 300);
+			this.tab_PointLeaderboard.TabIndex = 1;
+			this.tab_PointLeaderboard.Text = "Point Leaderboard";
+			this.tab_PointLeaderboard.UseVisualStyleBackColor = true;
+			// 
+			// dataGrid_TASPoints
+			// 
+			this.dataGrid_TASPoints.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGrid_TASPoints.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PointPlace,
+            this.PointUsername,
+            this.PointScore});
+			this.dataGrid_TASPoints.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGrid_TASPoints.Location = new System.Drawing.Point(3, 3);
+			this.dataGrid_TASPoints.Name = "dataGrid_TASPoints";
+			this.dataGrid_TASPoints.Size = new System.Drawing.Size(623, 294);
+			this.dataGrid_TASPoints.TabIndex = 0;
+			// 
+			// PointPlace
+			// 
+			this.PointPlace.HeaderText = "Place";
+			this.PointPlace.Name = "PointPlace";
+			this.PointPlace.Width = 50;
+			// 
+			// PointUsername
+			// 
+			this.PointUsername.HeaderText = "Username";
+			this.PointUsername.Name = "PointUsername";
+			// 
+			// PointScore
+			// 
+			this.PointScore.HeaderText = "Score";
+			this.PointScore.Name = "PointScore";
 			// 
 			// Place
 			// 
@@ -403,6 +520,12 @@
 			this.EndingFrame.HeaderText = "Ending Frame";
 			this.EndingFrame.Name = "EndingFrame";
 			// 
+			// Frames
+			// 
+			this.Frames.HeaderText = "Frames";
+			this.Frames.Name = "Frames";
+			this.Frames.ReadOnly = true;
+			// 
 			// Rerecords
 			// 
 			this.Rerecords.HeaderText = "Rerecords";
@@ -421,92 +544,13 @@
 			this.DQReason.Name = "DQReason";
 			this.DQReason.Resizable = System.Windows.Forms.DataGridViewTriState.True;
 			this.DQReason.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.DQReason.Width = 110;
+			this.DQReason.Width = 150;
 			// 
-			// btn_AddCompetitor
-			// 
-			this.btn_AddCompetitor.Location = new System.Drawing.Point(93, 168);
-			this.btn_AddCompetitor.Name = "btn_AddCompetitor";
-			this.btn_AddCompetitor.Size = new System.Drawing.Size(132, 25);
-			this.btn_AddCompetitor.TabIndex = 18;
-			this.btn_AddCompetitor.Text = "Add";
-			this.btn_AddCompetitor.UseVisualStyleBackColor = true;
-			this.btn_AddCompetitor.Click += new System.EventHandler(this.btn_AddCompetitor_Click);
-			// 
-			// scorePointsToolStripMenuItem
-			// 
-			this.scorePointsToolStripMenuItem.Name = "scorePointsToolStripMenuItem";
-			this.scorePointsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-			this.scorePointsToolStripMenuItem.Text = "&Score Points";
-			this.scorePointsToolStripMenuItem.Visible = false;
-			this.scorePointsToolStripMenuItem.Click += new System.EventHandler(this.scorePointsToolStripMenuItem_Click);
-			// 
-			// tab_DataGrids
-			// 
-			this.tab_DataGrids.Controls.Add(this.tab_CompLeaderboard);
-			this.tab_DataGrids.Controls.Add(this.tab_PointLeaderboard);
-			this.tab_DataGrids.Location = new System.Drawing.Point(231, 27);
-			this.tab_DataGrids.Name = "tab_DataGrids";
-			this.tab_DataGrids.SelectedIndex = 0;
-			this.tab_DataGrids.Size = new System.Drawing.Size(637, 326);
-			this.tab_DataGrids.TabIndex = 19;
-			// 
-			// tab_CompLeaderboard
-			// 
-			this.tab_CompLeaderboard.Controls.Add(this.dataGrid_TASData);
-			this.tab_CompLeaderboard.Location = new System.Drawing.Point(4, 22);
-			this.tab_CompLeaderboard.Name = "tab_CompLeaderboard";
-			this.tab_CompLeaderboard.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_CompLeaderboard.Size = new System.Drawing.Size(629, 300);
-			this.tab_CompLeaderboard.TabIndex = 0;
-			this.tab_CompLeaderboard.Text = "Competition Leaderboard";
-			this.tab_CompLeaderboard.UseVisualStyleBackColor = true;
-			// 
-			// tab_PointLeaderboard
-			// 
-			this.tab_PointLeaderboard.Controls.Add(this.dataGridView1);
-			this.tab_PointLeaderboard.Location = new System.Drawing.Point(4, 22);
-			this.tab_PointLeaderboard.Name = "tab_PointLeaderboard";
-			this.tab_PointLeaderboard.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_PointLeaderboard.Size = new System.Drawing.Size(629, 300);
-			this.tab_PointLeaderboard.TabIndex = 1;
-			this.tab_PointLeaderboard.Text = "Point Leaderboard";
-			this.tab_PointLeaderboard.UseVisualStyleBackColor = true;
-			// 
-			// dataGridView1
-			// 
-			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PointPlace,
-            this.PointUsername,
-            this.PointScore});
-			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-			this.dataGridView1.Name = "dataGridView1";
-			this.dataGridView1.Size = new System.Drawing.Size(623, 294);
-			this.dataGridView1.TabIndex = 0;
-			// 
-			// PointPlace
-			// 
-			this.PointPlace.HeaderText = "Place";
-			this.PointPlace.Name = "PointPlace";
-			this.PointPlace.Width = 50;
-			// 
-			// PointUsername
-			// 
-			this.PointUsername.HeaderText = "Username";
-			this.PointUsername.Name = "PointUsername";
-			// 
-			// PointScore
-			// 
-			this.PointScore.HeaderText = "Score";
-			this.PointScore.Name = "PointScore";
-			// 
-			// fm_Main
+			// frm_Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(868, 378);
+			this.ClientSize = new System.Drawing.Size(935, 378);
 			this.Controls.Add(this.tab_DataGrids);
 			this.Controls.Add(this.btn_AddCompetitor);
 			this.Controls.Add(this.label1);
@@ -526,7 +570,7 @@
 			this.MainMenuStrip = this.menuStrip;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
-			this.Name = "fm_Main";
+			this.Name = "frm_Main";
 			this.Text = "TAS Comp Display Tool";
 			this.menuStrip.ResumeLayout(false);
 			this.menuStrip.PerformLayout();
@@ -538,7 +582,7 @@
 			this.tab_DataGrids.ResumeLayout(false);
 			this.tab_CompLeaderboard.ResumeLayout(false);
 			this.tab_PointLeaderboard.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid_TASPoints)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -577,22 +621,27 @@
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_OpenedFile;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem rerankBoardToolStripMenuItem;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Place;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Username;
-		private System.Windows.Forms.DataGridViewTextBoxColumn StartingFrame;
-		private System.Windows.Forms.DataGridViewTextBoxColumn EndingFrame;
-		private System.Windows.Forms.DataGridViewTextBoxColumn Rerecords;
-		private System.Windows.Forms.DataGridViewCheckBoxColumn DQ;
-		private System.Windows.Forms.DataGridViewTextBoxColumn DQReason;
 		private System.Windows.Forms.ToolStripMenuItem exportPlainTextToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem scorePointsToolStripMenuItem;
 		private System.Windows.Forms.TabControl tab_DataGrids;
 		private System.Windows.Forms.TabPage tab_CompLeaderboard;
 		private System.Windows.Forms.TabPage tab_PointLeaderboard;
-		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.DataGridView dataGrid_TASPoints;
 		private System.Windows.Forms.DataGridViewTextBoxColumn PointPlace;
 		private System.Windows.Forms.DataGridViewTextBoxColumn PointUsername;
 		private System.Windows.Forms.DataGridViewTextBoxColumn PointScore;
+		private System.Windows.Forms.ToolStripMenuItem competitionLeaderboardToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem competitionLeaderboardToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem1;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Place;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Username;
+		private System.Windows.Forms.DataGridViewTextBoxColumn StartingFrame;
+		private System.Windows.Forms.DataGridViewTextBoxColumn EndingFrame;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Frames;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Rerecords;
+		private System.Windows.Forms.DataGridViewCheckBoxColumn DQ;
+		private System.Windows.Forms.DataGridViewTextBoxColumn DQReason;
 	}
 }
 

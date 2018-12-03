@@ -12,6 +12,7 @@ namespace TASCompDisplay
 		public string Username { get; set; }
 		public int StartFrame { get; set; }
 		public int EndFrame { get; set; }
+		public int Frames { get; }
 		public int Rerecords { get; set; }
 		public bool DQ { get; set; }
 		public string Comments { get; set; }
@@ -22,6 +23,7 @@ namespace TASCompDisplay
 			Username = username;
 			StartFrame = startframe;
 			EndFrame = endframe;
+			Frames = EndFrame - StartFrame;
 			Rerecords = rerecords;
 			DQ = dq;
 			Comments = comments;

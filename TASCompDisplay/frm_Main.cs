@@ -12,34 +12,71 @@ using Newtonsoft.Json;
 
 namespace TASCompDisplay
 {
-	public partial class fm_Main : Form
+	public partial class frm_Main : Form
 	{
 		File f = new File();
 
-		public fm_Main()
+		public frm_Main()
 		{
 			InitializeComponent();
 		}
 
-		private void openToolStripMenuItem_Click(object sender, EventArgs e)
+		private void competitionLeaderboardToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			OpenFile();
+			SaveComp();
 		}
 
-		public void OpenFile()
+		private void pointLeaderboardToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			SaveScores();
+		}
+
+		public void SaveComp()
+		{
+			dataGrid_TASData.EndEdit();
+
+			List<Competitor> CompetitionList = CompObjectCompile();
+
+			var savedata = JsonConvert.SerializeObject(CompetitionList);
+
+			f.Save_TASc(savedata);
+		}
+
+		public void SaveScores()
+		{
+			dataGrid_TASPoints.EndEdit();
+
+			List<Scores> ScoreList = ScoreObjectCompile();
+
+			var savedata = JsonConvert.SerializeObject(ScoreList);
+
+			f.Save_TASs(savedata);
+		}
+
+		private void competitionLeaderboardToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			OpenComp();
+		}
+
+		private void pointLeaderboardToolStripMenuItem1_Click(object sender, EventArgs e)
+		{
+			OpenPoints();
+		}
+
+		public void OpenComp()
 		{
 			bool readyToLoad;
 			string path;
 			string contents;
 
-			(readyToLoad, path, contents) = f.Load();
+			(readyToLoad, path, contents) = f.Load_TASc();
 			toolStripStatusLabel_OpenedFile.Text = f.filePath;
 
 			if (readyToLoad)
 			{
 				try
 				{
-					ResetAll();
+					ResetComp();
 
 					List<Competitor> competitionList = JsonConvert.DeserializeObject<List<Competitor>>(contents);
 
@@ -47,12 +84,40 @@ namespace TASCompDisplay
 				}
 				catch (Exception e)
 				{
-					MessageBox.Show($"Error parsing file\n\n{e}", "Error reading file...");
+					MessageBox.Show($"Error parsing competition file\n\n{e}", "Error reading file...");
 				}
 			}
 
 			// Sort ranks
 			GridSortRank();
+		}
+
+		public void OpenPoints()
+		{
+			bool fileLoaded;
+			string contents;
+
+			(fileLoaded, contents) = f.Load_TASs();
+			toolStripStatusLabel_OpenedFile.Text = f.filePath;
+
+			if (fileLoaded)
+			{
+				try
+				{
+					ResetPoints();
+
+					List<Scores> pointsList = JsonConvert.DeserializeObject<List<Scores>>(contents);
+
+					WriteToPointGrid(pointsList);
+				}
+				catch (Exception e)
+				{
+					MessageBox.Show($"Error parsing score file\n\n{e}", "Error reading file...");
+				}
+			}
+
+			// Sort ranks
+			GridSortPointRank();
 		}
 
 		public void WriteToDataGrid(List<Competitor> competitionList)
@@ -65,14 +130,15 @@ namespace TASCompDisplay
 				row.Cells[1].Value = item.Username;
 				row.Cells[2].Value = item.StartFrame;
 				row.Cells[3].Value = item.EndFrame;
-				row.Cells[4].Value = item.Rerecords;
-				row.Cells[5].Value = item.DQ;
-				row.Cells[6].Value = item.Comments;
+				row.Cells[4].Value = item.Frames;
+				row.Cells[5].Value = item.Rerecords;
+				row.Cells[6].Value = item.DQ;
+				row.Cells[7].Value = item.Comments;
 
 				dataGrid_TASData.Rows.Add(row);
 			}
 
-			// Sort by rank
+			// Sort by Rank
 			dataGrid_TASData.Sort(dataGrid_TASData.Columns[0], ListSortDirection.Ascending);
 		}
 
@@ -115,29 +181,37 @@ namespace TASCompDisplay
 
 		private void btn_AddCompetitor_Click(object sender, EventArgs e)
 		{
-			// todo check for dup usernames
+			List<Competitor> singleCompetitor = new List<Competitor>();
 
-			DataGridViewRow row = (DataGridViewRow)dataGrid_TASData.Rows[0].Clone();
+			var Username = txt_addUsername.Text.Trim();
 
-			row.Cells[1].Value = txt_addUsername.Text.Trim();
-			row.Cells[2].Value = txt_addStartFrame.Text.Trim();
-			row.Cells[3].Value = txt_addEndFrame.Text.Trim();
-			row.Cells[4].Value = txt_addRerecords.Text.Trim();
+			var Start = 0;
+			try { Start = Convert.ToInt32(txt_addStartFrame.Text.Trim()); } catch { Start = -1; }
+
+			var End = 0;
+			try { End = Convert.ToInt32(txt_addEndFrame.Text.Trim()); } catch { End = -1; }
+
+			var Rerecs = 0;
+			try { Rerecs = Convert.ToInt32(txt_addRerecords.Text.Trim()); } catch { Rerecs = -1; }
+
+			var DQ = false;
+			var Comment = "";
 
 			if (checkBox_DQ.Checked)
 			{
-				row.Cells[5].Value = true;
-				row.Cells[6].Value = DQString();
+				DQ = true;
+				Comment = DQString();
 			}
 			else
 			{
-				row.Cells[5].Value = false;
-				row.Cells[6].Value = "";
+				DQ = false;
+				Comment = "";
 			}
 
-			dataGrid_TASData.Rows.Add(row);
+			Competitor newCompetitor = new Competitor(1, Username, Start, End, Rerecs, DQ, Comment);
+			singleCompetitor.Add(newCompetitor);
+			WriteToDataGrid(singleCompetitor);
 
-			// CalculateRanks()
 			GridSortRank();
 		}
 
@@ -166,17 +240,6 @@ namespace TASCompDisplay
 			return DQ.Substring(0, DQ.Length - 2).Trim();
 		}
 
-		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			dataGrid_TASData.EndEdit();
-
-			List<Competitor> CompetitionList = CompObjectCompile();
-
-			var savedata = JsonConvert.SerializeObject(CompetitionList);
-
-			f.Save(savedata);
-		}
-
 		public List<Competitor> CompObjectCompile()
 		{
 			List<Competitor> CompetitionList = new List<Competitor>();
@@ -193,16 +256,16 @@ namespace TASCompDisplay
 				try { end = Convert.ToInt32(dataGrid_TASData.Rows[row].Cells[3].Value); }
 				catch { end = -1; }
 				int rerecs;
-				try { rerecs = Convert.ToInt32(dataGrid_TASData.Rows[row].Cells[4].Value); }
+				try { rerecs = Convert.ToInt32(dataGrid_TASData.Rows[row].Cells[5].Value); }
 				catch { rerecs = -1; }
 
 				string username = $"{dataGrid_TASData.Rows[row].Cells[1].Value}";
-				
-				bool dq = (bool)dataGrid_TASData.Rows[row].Cells[5].Value;
+
+				bool dq = (bool)dataGrid_TASData.Rows[row].Cells[6].Value;
 
 				//MessageBox.Show(dq.ToString());
 
-				string comments = $"{dataGrid_TASData.Rows[row].Cells[6].Value}";
+				string comments = $"{dataGrid_TASData.Rows[row].Cells[7].Value}";
 
 				Competitor user = new Competitor(rank, username, start, end, rerecs, dq, comments);
 				CompetitionList.Add(user);
@@ -213,14 +276,13 @@ namespace TASCompDisplay
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ResetAll();
+			ResetComp();
 		}
 
-		public void ResetAll()
+		public void ResetComp()
 		{
-			// Reset all elements
-
 			dataGrid_TASData.Rows.Clear();
+			dataGrid_TASPoints.Rows.Clear();
 
 			txt_addUsername.Clear();
 			txt_addStartFrame.Clear();
@@ -240,6 +302,13 @@ namespace TASCompDisplay
 			Refresh();
 		}
 
+		public void ResetPoints()
+		{
+			dataGrid_TASPoints.Rows.Clear();
+
+			Refresh();
+		}
+
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			frm_About about = new frm_About();
@@ -248,48 +317,58 @@ namespace TASCompDisplay
 
 		public void GridSortRank()
 		{
-			List<Competitor> compList = CompObjectCompile();
 			Dictionary<string, int> timeDict = new Dictionary<string, int>();
 
 			// sort compList 
-			List<Competitor> SortedCompList = compList.OrderBy(x => x.EndFrame - x.StartFrame).ToList();
+			//List<Competitor> SortedCompList = compList.OrderBy(x => x.Frames).ToList();
+			
+			// Sort by Frames
+			dataGrid_TASData.Sort(dataGrid_TASData.Columns[4], ListSortDirection.Ascending);
+
+			List<Competitor> compList = CompObjectCompile();
 
 			// set rank = i
 			// if a DQ'd run, set to last place
-			for (int i = 0; i < SortedCompList.Count(); i++)
+			int Rank = 1;
+			for (int i = 0; i < compList.Count(); i++)
 			{
-				if (SortedCompList[i].DQ == true)
+				if (compList[i].DQ == true)
 				{
-					SortedCompList[i].Rank = SortedCompList.Count();
+					compList[i].Rank = compList.Count();
 				}
 
-				else if (SortedCompList[i].DQ == false)
+				else if (compList[i].DQ == false)
 				{
-					SortedCompList[i].Rank = i;
+					compList[i].Rank = Rank++;
 				}
 
 			}
 
 			// check and fix ranks in instances of ties
-			for (int i = 1; i < SortedCompList.Count(); i++)
+			for (int i = 1; i < compList.Count(); i++)
 			{
-				int time = SortedCompList[i].EndFrame - SortedCompList[i].StartFrame;
-				int prevtime = SortedCompList[i - 1].EndFrame - SortedCompList[i - 1].StartFrame;
+				int time = compList[i].Frames;
+				int prevtime = compList[i - 1].Frames;
 
 				// check if dup. If so, set rank to rank of previous item
 				// ignores DQs
-				// Does this work?????? Apparently?
-				if (time == prevtime && SortedCompList[i].DQ == true)
-					SortedCompList[i].Rank = SortedCompList[i - 1].Rank;
+				if (time == prevtime && compList[i].DQ == false)
+					compList[i].Rank = compList[i - 1].Rank;
 			}
 
 
 			dataGrid_TASData.Rows.Clear();
-			WriteToDataGrid(SortedCompList);
+			WriteToDataGrid(compList);
 		}
 
 		private void rerankBoardToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			ReRank();
+		}
+
+		public void ReRank()
+		{
+			dataGrid_TASData.EndEdit();
 			GridSortRank();
 		}
 
@@ -361,12 +440,98 @@ namespace TASCompDisplay
 
 		public void scoreLeaderboard()
 		{
+			// TODO:
 			// Ask if existing file exists
 			// Read points from file
 			// Add points, and add to pre-existing points if they exist
 			// Save
 
+			// add loaded scores to listed scores, then sort
+			GridSortPointRank();
+		}
 
+		public double ScoreCalc(int place, int total)
+		{
+			double score = ((30 / Math.Pow(total, 5)) * Math.Pow((total - place + 1), 5)) + (10 * ((total - place + 1) / total)) + 10;
+			return score;
+		}
+
+		public List<Scores> ScoreObjectCompile()
+		{
+			List<Scores> ScoreList = new List<Scores>();
+
+			// Sort by points
+			try
+			{
+				dataGrid_TASPoints.Sort(dataGrid_TASData.Columns[2], ListSortDirection.Ascending);
+
+				for (int row = 0; row < dataGrid_TASPoints.Rows.Count - 1; row++)
+				{
+					int rank = row + 1;
+
+					string username = $"{dataGrid_TASPoints.Rows[row].Cells[1].Value}";
+
+					double score = 0;
+					try { score = Convert.ToDouble(dataGrid_TASPoints.Rows[row].Cells[2].Value); }
+					catch { score = -1; }
+
+					Scores user = new Scores(rank, username, score);
+					ScoreList.Add(user);
+				}
+			}
+			catch { }
+
+			return ScoreList;
+		}
+
+		public void WriteToPointGrid(List<Scores> scoresList)
+		{
+			foreach (var item in scoresList)
+			{
+				DataGridViewRow row = (DataGridViewRow)dataGrid_TASPoints.Rows[0].Clone();
+
+				row.Cells[0].Value = item.Rank;
+				row.Cells[1].Value = item.Username;
+				row.Cells[2].Value = item.Score;
+
+				dataGrid_TASPoints.Rows.Add(row);
+			}
+
+			// Sort by rank
+			dataGrid_TASPoints.Sort(dataGrid_TASPoints.Columns[0], ListSortDirection.Ascending);
+		}
+
+		public void GridSortPointRank()
+		{
+			List<Scores> scoreList = ScoreObjectCompile();
+
+			// sort compList 
+			List<Scores> SortedScoreList = scoreList.OrderBy(x => x.Score).ToList();
+
+			// set rank = i
+			for (int i = 0; i < SortedScoreList.Count(); i++)
+			{
+				SortedScoreList[i].Rank = i;
+			}
+
+			// check and fix ranks in instances of ties
+			for (int i = 1; i < scoreList.Count(); i++)
+			{
+				double score = SortedScoreList[i].Score;
+				double prevScore = SortedScoreList[i - 1].Score;
+
+				// check if dup. If so, set rank to rank of previous item
+				if (score == prevScore)
+					SortedScoreList[i].Rank = SortedScoreList[i - 1].Rank;
+			}
+
+			dataGrid_TASData.Rows.Clear();
+			WriteToPointGrid(SortedScoreList);
+		}
+
+		private void dataGrid_TASData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		{
+			ReRank();
 		}
 	}
 }
