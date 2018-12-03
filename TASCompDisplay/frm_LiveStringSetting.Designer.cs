@@ -82,7 +82,7 @@
 			// 
 			// btn_Confirm
 			// 
-			this.btn_Confirm.Location = new System.Drawing.Point(28, 61);
+			this.btn_Confirm.Location = new System.Drawing.Point(30, 61);
 			this.btn_Confirm.Name = "btn_Confirm";
 			this.btn_Confirm.Size = new System.Drawing.Size(68, 23);
 			this.btn_Confirm.TabIndex = 4;
@@ -99,7 +99,7 @@
 			// 
 			// brn_Refresh
 			// 
-			this.brn_Refresh.Location = new System.Drawing.Point(100, 61);
+			this.brn_Refresh.Location = new System.Drawing.Point(104, 61);
 			this.brn_Refresh.Name = "brn_Refresh";
 			this.brn_Refresh.Size = new System.Drawing.Size(68, 23);
 			this.brn_Refresh.TabIndex = 6;
@@ -109,7 +109,7 @@
 			// 
 			// btn_Help
 			// 
-			this.btn_Help.Location = new System.Drawing.Point(248, 61);
+			this.btn_Help.Location = new System.Drawing.Point(252, 61);
 			this.btn_Help.Name = "btn_Help";
 			this.btn_Help.Size = new System.Drawing.Size(68, 23);
 			this.btn_Help.TabIndex = 7;
@@ -119,7 +119,7 @@
 			// 
 			// btn_default
 			// 
-			this.btn_default.Location = new System.Drawing.Point(174, 61);
+			this.btn_default.Location = new System.Drawing.Point(178, 61);
 			this.btn_default.Name = "btn_default";
 			this.btn_default.Size = new System.Drawing.Size(68, 23);
 			this.btn_default.TabIndex = 8;

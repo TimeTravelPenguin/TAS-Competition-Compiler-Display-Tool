@@ -44,6 +44,8 @@ namespace TASCompDisplay
 			Properties.Settings.Default.Time = chk_Time.Checked;
 			Properties.Settings.Default.Rerecords = chk_Rerecords.Checked;
 			Properties.Settings.Default.Format = txt_Format.Text;
+
+			Properties.Settings.Default.Save();
 		}
 
 		public void LoadVars()
@@ -85,6 +87,8 @@ namespace TASCompDisplay
 					Properties.Settings.Default.Time = true;
 					Properties.Settings.Default.Rerecords = true;
 					Properties.Settings.Default.Format = "{0} {1} ({2})";
+
+					Properties.Settings.Default.Save();
 				}
 				else { }
 			}

@@ -267,7 +267,9 @@ namespace TASCompDisplay
 
 				string username = $"{dataGrid_TASData.Rows[row].Cells[1].Value}";
 
-				bool dq = (bool)dataGrid_TASData.Rows[row].Cells[6].Value;
+				bool dq;
+				try { dq = (bool)dataGrid_TASData.Rows[row].Cells[6].Value; }
+				catch { dq = false; }
 
 				//MessageBox.Show(dq.ToString());
 
@@ -678,13 +680,6 @@ namespace TASCompDisplay
 			{
 				MessageBox.Show("Please ensure you have at least one competitor in the competition leaderboard", "Not enough competitors");
 			}
-		}
-
-		private void changetxtOutputToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			// TODO
-			// add dir path to settings
-			// code the change directory dialogue
 		}
 	}
 }

@@ -94,5 +94,29 @@ namespace TASCompDisplay.Properties {
                 this["Rank"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string dir {
+            get {
+                return ((string)(this["dir"]));
+            }
+            set {
+                this["dir"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool nextRun {
+            get {
+                return ((bool)(this["nextRun"]));
+            }
+            set {
+                this["nextRun"] = value;
+            }
+        }
     }
 }

@@ -46,7 +46,6 @@
 			this.scorePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.liveDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.liveDisplayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.changetxtOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel_OpenedFile = new System.Windows.Forms.ToolStripStatusLabel();
@@ -70,14 +69,6 @@
 			this.lbl_addRerecords = new System.Windows.Forms.Label();
 			this.label1 = new System.Windows.Forms.Label();
 			this.dataGrid_TASData = new System.Windows.Forms.DataGridView();
-			this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.StartingFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.EndingFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Frames = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.Rerecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.DQ = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-			this.DQReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.btn_AddCompetitor = new System.Windows.Forms.Button();
 			this.tab_DataGrids = new System.Windows.Forms.TabControl();
 			this.tab_CompLeaderboard = new System.Windows.Forms.TabPage();
@@ -86,6 +77,14 @@
 			this.PointPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.StartingFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.EndingFrame = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Frames = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Rerecords = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.DQ = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+			this.DQReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.menuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox_DQReasons.SuspendLayout();
@@ -229,8 +228,7 @@
 			// liveDisplayToolStripMenuItem
 			// 
 			this.liveDisplayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.liveDisplayerToolStripMenuItem,
-            this.changetxtOutputToolStripMenuItem});
+            this.liveDisplayerToolStripMenuItem});
 			this.liveDisplayToolStripMenuItem.Name = "liveDisplayToolStripMenuItem";
 			this.liveDisplayToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
 			this.liveDisplayToolStripMenuItem.Text = "&Live Display";
@@ -241,13 +239,6 @@
 			this.liveDisplayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.liveDisplayerToolStripMenuItem.Text = "Live Displayer";
 			this.liveDisplayerToolStripMenuItem.Click += new System.EventHandler(this.liveDisplayerToolStripMenuItem_Click);
-			// 
-			// changetxtOutputToolStripMenuItem
-			// 
-			this.changetxtOutputToolStripMenuItem.Name = "changetxtOutputToolStripMenuItem";
-			this.changetxtOutputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.changetxtOutputToolStripMenuItem.Text = "Change .txt Output";
-			this.changetxtOutputToolStripMenuItem.Click += new System.EventHandler(this.changetxtOutputToolStripMenuItem_Click);
 			// 
 			// statusStrip1
 			// 
@@ -421,18 +412,18 @@
 			this.lbl_addStarting.AutoSize = true;
 			this.lbl_addStarting.Location = new System.Drawing.Point(2, 93);
 			this.lbl_addStarting.Name = "lbl_addStarting";
-			this.lbl_addStarting.Size = new System.Drawing.Size(78, 13);
+			this.lbl_addStarting.Size = new System.Drawing.Size(59, 13);
 			this.lbl_addStarting.TabIndex = 13;
-			this.lbl_addStarting.Text = "Starting Frame:";
+			this.lbl_addStarting.Text = "Starting VI:";
 			// 
 			// lbl_addEnding
 			// 
 			this.lbl_addEnding.AutoSize = true;
 			this.lbl_addEnding.Location = new System.Drawing.Point(2, 119);
 			this.lbl_addEnding.Name = "lbl_addEnding";
-			this.lbl_addEnding.Size = new System.Drawing.Size(75, 13);
+			this.lbl_addEnding.Size = new System.Drawing.Size(56, 13);
 			this.lbl_addEnding.TabIndex = 14;
-			this.lbl_addEnding.Text = "Ending Frame:";
+			this.lbl_addEnding.Text = "Ending VI:";
 			// 
 			// lbl_addRerecords
 			// 
@@ -470,54 +461,6 @@
 			this.dataGrid_TASData.Name = "dataGrid_TASData";
 			this.dataGrid_TASData.Size = new System.Drawing.Size(678, 294);
 			this.dataGrid_TASData.TabIndex = 17;
-			// 
-			// Place
-			// 
-			this.Place.HeaderText = "Place";
-			this.Place.Name = "Place";
-			this.Place.ReadOnly = true;
-			this.Place.Width = 50;
-			// 
-			// Username
-			// 
-			this.Username.HeaderText = "Username";
-			this.Username.Name = "Username";
-			// 
-			// StartingFrame
-			// 
-			this.StartingFrame.HeaderText = "Starting Frame";
-			this.StartingFrame.Name = "StartingFrame";
-			// 
-			// EndingFrame
-			// 
-			this.EndingFrame.HeaderText = "Ending Frame";
-			this.EndingFrame.Name = "EndingFrame";
-			// 
-			// Frames
-			// 
-			this.Frames.HeaderText = "Frames";
-			this.Frames.Name = "Frames";
-			this.Frames.ReadOnly = true;
-			// 
-			// Rerecords
-			// 
-			this.Rerecords.HeaderText = "Rerecords";
-			this.Rerecords.Name = "Rerecords";
-			this.Rerecords.Width = 80;
-			// 
-			// DQ
-			// 
-			this.DQ.HeaderText = "DQ";
-			this.DQ.Name = "DQ";
-			this.DQ.Width = 50;
-			// 
-			// DQReason
-			// 
-			this.DQReason.HeaderText = "DQ Reason";
-			this.DQReason.Name = "DQReason";
-			this.DQReason.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-			this.DQReason.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-			this.DQReason.Width = 150;
 			// 
 			// btn_AddCompetitor
 			// 
@@ -589,6 +532,54 @@
 			// 
 			this.PointScore.HeaderText = "Score";
 			this.PointScore.Name = "PointScore";
+			// 
+			// Place
+			// 
+			this.Place.HeaderText = "Place";
+			this.Place.Name = "Place";
+			this.Place.ReadOnly = true;
+			this.Place.Width = 50;
+			// 
+			// Username
+			// 
+			this.Username.HeaderText = "Username";
+			this.Username.Name = "Username";
+			// 
+			// StartingFrame
+			// 
+			this.StartingFrame.HeaderText = "Starting VI";
+			this.StartingFrame.Name = "StartingFrame";
+			// 
+			// EndingFrame
+			// 
+			this.EndingFrame.HeaderText = "Ending VI";
+			this.EndingFrame.Name = "EndingFrame";
+			// 
+			// Frames
+			// 
+			this.Frames.HeaderText = "VIs";
+			this.Frames.Name = "Frames";
+			this.Frames.ReadOnly = true;
+			// 
+			// Rerecords
+			// 
+			this.Rerecords.HeaderText = "Rerecords";
+			this.Rerecords.Name = "Rerecords";
+			this.Rerecords.Width = 80;
+			// 
+			// DQ
+			// 
+			this.DQ.HeaderText = "DQ";
+			this.DQ.Name = "DQ";
+			this.DQ.Width = 50;
+			// 
+			// DQReason
+			// 
+			this.DQReason.HeaderText = "DQ Reason";
+			this.DQReason.Name = "DQReason";
+			this.DQReason.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+			this.DQReason.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			this.DQReason.Width = 150;
 			// 
 			// frm_Main
 			// 
@@ -678,6 +669,10 @@
 		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem competitionLeaderboardToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem competitionLeaderboardToolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem liveDisplayToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem liveDisplayerToolStripMenuItem;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Place;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Username;
 		private System.Windows.Forms.DataGridViewTextBoxColumn StartingFrame;
@@ -686,11 +681,6 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rerecords;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn DQ;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DQReason;
-		private System.Windows.Forms.ToolStripMenuItem competitionLeaderboardToolStripMenuItem2;
-		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem2;
-		private System.Windows.Forms.ToolStripMenuItem liveDisplayToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem liveDisplayerToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem changetxtOutputToolStripMenuItem;
 	}
 }
 
