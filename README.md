@@ -31,7 +31,7 @@ You can indevidually open/save both the competition leaderboards and points lead
 
 ![alt text](http://imgs.fyi/img/6t2g.png)
 
-By hitting the "Score Points" button in the top toolbar, scores all the runners in the compeition. If you have a .TASs file open, the scores of existing users are added to their previous score. If not, they are added as a new user.
+By hitting the "Score Points" button in the top toolbar, scores all the runners in the compeition. If you have a .TASs file open, the scores of existing users are added to their previous score. If not, they are added as a new user. Users who have been DQ'd will not score any points.
 
 ![alt text](http://imgs.fyi/img/6t2h.png)
 
