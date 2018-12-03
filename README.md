@@ -11,6 +11,7 @@ The latest version can be [found here](https://github.com/TimeTravelPenguin/TAS-
 - Live output of competitor information to use with livestream information display. You can output one user at a time, displaying their place, name, time, etc. so it can be displayed on stream
 
 # How to use TASCCDT
+### [Click here for video demonstration](https://www.youtube.com/watch?v=AwPjAeGKUu8)
 Here is the main window you will see upon launching v0.1.3:
 
 ![alt text](http://imgs.fyi/img/6t2b.png)
