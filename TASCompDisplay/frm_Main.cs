@@ -648,5 +648,43 @@ namespace TASCompDisplay
 			ptp.displayText = output;
 			ptp.ShowDialog();
 		}
+
+		private void liveDisplayerToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			ReRank();
+
+			// DQcount is used so that DQ's are added from slowest to fastest
+			int DQcount = 0;
+			var compList = CompObjectCompile();
+			for (int i = 0; i < compList.Count; i++)
+			{
+				if (compList[i].DQ)
+				{
+					var item = compList[i];
+					compList.Remove(compList[i]);
+					compList.Insert(DQcount++, item);
+					//i--;
+				}
+			}
+
+			if (compList.Count > 0)
+			{
+				frm_LiveDisplay ld = new frm_LiveDisplay();
+				ld.compList = compList;
+				ld.compList.Reverse();
+				ld.ShowDialog();
+			}
+			else
+			{
+				MessageBox.Show("Please ensure you have at least one competitor in the competition leaderboard", "Not enough competitors");
+			}
+		}
+
+		private void changetxtOutputToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			// TODO
+			// add dir path to settings
+			// code the change directory dialogue
+		}
 	}
 }

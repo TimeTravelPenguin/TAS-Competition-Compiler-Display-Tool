@@ -8,23 +8,91 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TASCompDisplay.Properties
-{
-
-
-	[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-	[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-	internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-	{
-
-		private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-		public static Settings Default
-		{
-			get
-			{
-				return defaultInstance;
-			}
-		}
-	}
+namespace TASCompDisplay.Properties {
+    
+    
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Username {
+            get {
+                return ((bool)(this["Username"]));
+            }
+            set {
+                this["Username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Frames {
+            get {
+                return ((bool)(this["Frames"]));
+            }
+            set {
+                this["Frames"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Time {
+            get {
+                return ((bool)(this["Time"]));
+            }
+            set {
+                this["Time"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Rerecords {
+            get {
+                return ((bool)(this["Rerecords"]));
+            }
+            set {
+                this["Rerecords"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{0}. {1} {2} ({3})")]
+        public string Format {
+            get {
+                return ((string)(this["Format"]));
+            }
+            set {
+                this["Format"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool Rank {
+            get {
+                return ((bool)(this["Rank"]));
+            }
+            set {
+                this["Rank"] = value;
+            }
+        }
+    }
 }

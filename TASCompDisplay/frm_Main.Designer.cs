@@ -44,6 +44,9 @@
 			this.pointLeaderboardToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
 			this.rerankBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.scorePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.liveDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.liveDisplayerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.changetxtOutputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel_OpenedFile = new System.Windows.Forms.ToolStripStatusLabel();
@@ -100,7 +103,8 @@
             this.aboutToolStripMenuItem,
             this.exportPlainTextToolStripMenuItem,
             this.rerankBoardToolStripMenuItem,
-            this.scorePointsToolStripMenuItem});
+            this.scorePointsToolStripMenuItem,
+            this.liveDisplayToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(935, 24);
@@ -221,6 +225,29 @@
 			this.scorePointsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
 			this.scorePointsToolStripMenuItem.Text = "&Score Points";
 			this.scorePointsToolStripMenuItem.Click += new System.EventHandler(this.scorePointsToolStripMenuItem_Click);
+			// 
+			// liveDisplayToolStripMenuItem
+			// 
+			this.liveDisplayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.liveDisplayerToolStripMenuItem,
+            this.changetxtOutputToolStripMenuItem});
+			this.liveDisplayToolStripMenuItem.Name = "liveDisplayToolStripMenuItem";
+			this.liveDisplayToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+			this.liveDisplayToolStripMenuItem.Text = "&Live Display";
+			// 
+			// liveDisplayerToolStripMenuItem
+			// 
+			this.liveDisplayerToolStripMenuItem.Name = "liveDisplayerToolStripMenuItem";
+			this.liveDisplayerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.liveDisplayerToolStripMenuItem.Text = "Live Displayer";
+			this.liveDisplayerToolStripMenuItem.Click += new System.EventHandler(this.liveDisplayerToolStripMenuItem_Click);
+			// 
+			// changetxtOutputToolStripMenuItem
+			// 
+			this.changetxtOutputToolStripMenuItem.Name = "changetxtOutputToolStripMenuItem";
+			this.changetxtOutputToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.changetxtOutputToolStripMenuItem.Text = "Change .txt Output";
+			this.changetxtOutputToolStripMenuItem.Click += new System.EventHandler(this.changetxtOutputToolStripMenuItem_Click);
 			// 
 			// statusStrip1
 			// 
@@ -661,6 +688,9 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn DQReason;
 		private System.Windows.Forms.ToolStripMenuItem competitionLeaderboardToolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem liveDisplayToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem liveDisplayerToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem changetxtOutputToolStripMenuItem;
 	}
 }
 
