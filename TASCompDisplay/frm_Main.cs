@@ -12,6 +12,9 @@ using Newtonsoft.Json;
 
 namespace TASCompDisplay
 {
+	// TODO
+	// Add indicator to show that the datagrid has been altered and not yet been reranked
+
 	public partial class frm_Main : Form
 	{
 		File f = new File();
@@ -76,7 +79,7 @@ namespace TASCompDisplay
 			{
 				try
 				{
-					ResetComp();
+					ResetCompGrid();
 
 					List<Competitor> competitionList = JsonConvert.DeserializeObject<List<Competitor>>(contents);
 
@@ -104,7 +107,7 @@ namespace TASCompDisplay
 			{
 				try
 				{
-					ResetPoints();
+					ResetPointGrid();
 
 					List<Scores> pointsList = JsonConvert.DeserializeObject<List<Scores>>(contents);
 
@@ -276,10 +279,39 @@ namespace TASCompDisplay
 
 		private void newToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			ResetComp();
+			ResetAll();
 		}
 
-		public void ResetComp()
+		public void ResetCompGrid()
+		{
+			dataGrid_TASData.Rows.Clear();
+
+			txt_addUsername.Clear();
+			txt_addStartFrame.Clear();
+			txt_addEndFrame.Clear();
+			txt_addRerecords.Clear();
+
+			checkBox_DQ.Checked = false;
+			chk_DQ_M64Early.Checked = false;
+			chk_DQ_FailedGoal.Checked = false;
+			chk_DQ_StratTalk.Checked = false;
+			chk_DQ_IllegalInteraction.Checked = false;
+			chk_DQ_Desync.Checked = false;
+			chk_DQ_Other.Checked = false;
+
+			txt_DQ_Other.Clear();
+
+			Refresh();
+		}
+
+		public void ResetPointGrid()
+		{
+			dataGrid_TASPoints.Rows.Clear();
+
+			Refresh();
+		}
+
+		public void ResetAll()
 		{
 			dataGrid_TASData.Rows.Clear();
 			dataGrid_TASPoints.Rows.Clear();
@@ -302,13 +334,6 @@ namespace TASCompDisplay
 			Refresh();
 		}
 
-		public void ResetPoints()
-		{
-			dataGrid_TASPoints.Rows.Clear();
-
-			Refresh();
-		}
-
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			frm_About about = new frm_About();
@@ -321,7 +346,7 @@ namespace TASCompDisplay
 
 			// sort compList 
 			//List<Competitor> SortedCompList = compList.OrderBy(x => x.Frames).ToList();
-			
+
 			// Sort by Frames
 			dataGrid_TASData.Sort(dataGrid_TASData.Columns[4], ListSortDirection.Ascending);
 
@@ -372,70 +397,24 @@ namespace TASCompDisplay
 			GridSortRank();
 		}
 
-		private void exportPlainTextToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			var data = CompObjectCompile();
-
-			NumberConverter numConv = new NumberConverter();
-
-			string output = "**__Task XX Results:__**\r\n";
-			string temp;
-
-			int boldLimit = 5;
-			double nonDQs = 0;
-
-			// get number of nonDQs
-			foreach (var item in data)
-				if (item.DQ == false) { nonDQs++; }
-
-			// set bold limit
-			if (nonDQs < 5)
-				boldLimit = (int)Math.Ceiling(nonDQs / 2);
-
-			// Non DQs
-			foreach (var item in data)
-			{
-				if (item.DQ == false)
-				{
-					temp = $"{numConv.AddOrdinal(item.Rank)}. {item.Username} {numConv.FormatTime(item.EndFrame - item.StartFrame)}";
-
-					if (item.Rank <= boldLimit)
-					{
-						output += $"**{temp}**\r\n";
-					}
-					else
-					{
-						output += $"{temp}\r\n";
-					}
-				}
-			}
-
-			output += "\r\n";
-
-			// DQs
-			foreach (var item in data)
-			{
-				if (item.DQ == true)
-				{
-					output += $"DQ. {item.Username} {item.Comments}\r\n";
-				}
-			}
-
-			// Display in new popup form
-			frm_PlainTextPopup ptp = new frm_PlainTextPopup();
-			ptp.displayText = output;
-			ptp.ShowDialog();
-		}
-
 		private void scorePointsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			var confirmResult = MessageBox.Show("Are you sure you wish to score points?",
-									 "Score confimation",
-									 MessageBoxButtons.YesNo);
+			try
+			{
+				ReRank();
 
-			if (confirmResult == DialogResult.Yes)
-				scoreLeaderboard();
-			else { }
+				var confirmResult = MessageBox.Show("Are you sure you wish to score points?",
+										 "Score confimation",
+										 MessageBoxButtons.YesNo);
+
+				if (confirmResult == DialogResult.Yes)
+					scoreLeaderboard();
+				else { }
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show($"There was an error\n{err}", "Error...");
+			}
 		}
 
 		public void scoreLeaderboard()
@@ -446,14 +425,61 @@ namespace TASCompDisplay
 			// Add points, and add to pre-existing points if they exist
 			// Save
 
+			addPoints();
+
 			// add loaded scores to listed scores, then sort
 			GridSortPointRank();
 		}
 
+		public void addPoints()
+		{
+			List<Competitor> leaderboard = CompObjectCompile();
+			List<Scores> pointsboard = ScoreObjectCompile();
+
+			// check if name is on leaderboard, then add points based on rank.
+			// otherwise, add new name to pointsboard
+
+			bool LeaderInPoints = false;
+			foreach (var leaderUsername in leaderboard)
+			{
+				LeaderInPoints = false;
+
+				for (int i = 0; i < pointsboard.Count; i++)
+				{
+					if (leaderUsername.Username == pointsboard[i].Username && !leaderUsername.DQ)
+					{
+						pointsboard[i].Score += ScoreCalc(leaderUsername.Rank, leaderboard.Count);
+						LeaderInPoints = true;
+					}
+					else if (leaderUsername.Username == pointsboard[i].Username && leaderUsername.DQ)
+					{
+						pointsboard[i].Score += 0;
+						LeaderInPoints = true;
+					}
+				}
+				if (!LeaderInPoints && !leaderUsername.DQ)
+				{
+					Scores name = new Scores(leaderUsername.Rank, leaderUsername.Username, ScoreCalc(leaderUsername.Rank, leaderboard.Count));
+					pointsboard.Add(name);
+				}
+				else if (!LeaderInPoints && leaderUsername.DQ)
+				{
+					Scores name = new Scores(leaderUsername.Rank, leaderUsername.Username, 0);
+					pointsboard.Add(name);
+				}
+			}
+
+			dataGrid_TASPoints.Rows.Clear();
+			WriteToPointGrid(pointsboard);
+		}
+
 		public double ScoreCalc(int place, int total)
 		{
-			double score = ((30 / Math.Pow(total, 5)) * Math.Pow((total - place + 1), 5)) + (10 * ((total - place + 1) / total)) + 10;
-			return score;
+			//double score = ((30 / Math.Pow(total, 5)) * Math.Pow((total - place + 1), 5)) + (10 * ((total - place + 1) / total)) + 10;
+			double x = place;
+			double a = total;
+			double score = (30 / Math.Pow(a, 5)) * Math.Pow((a - x + 1), 5) + ((10 * (a - x + 1) / a)) + 10;
+			return Math.Round(score, 1);
 		}
 
 		public List<Scores> ScoreObjectCompile()
@@ -463,8 +489,6 @@ namespace TASCompDisplay
 			// Sort by points
 			try
 			{
-				dataGrid_TASPoints.Sort(dataGrid_TASData.Columns[2], ListSortDirection.Ascending);
-
 				for (int row = 0; row < dataGrid_TASPoints.Rows.Count - 1; row++)
 				{
 					int rank = row + 1;
@@ -479,7 +503,7 @@ namespace TASCompDisplay
 					ScoreList.Add(user);
 				}
 			}
-			catch { }
+			catch { MessageBox.Show("There was an error with your data", "Error..."); }
 
 			return ScoreList;
 		}
@@ -503,35 +527,125 @@ namespace TASCompDisplay
 
 		public void GridSortPointRank()
 		{
+			dataGrid_TASPoints.Sort(dataGrid_TASPoints.Columns[2], ListSortDirection.Descending);
 			List<Scores> scoreList = ScoreObjectCompile();
 
-			// sort compList 
-			List<Scores> SortedScoreList = scoreList.OrderBy(x => x.Score).ToList();
+			//// sort compList 
+			//List<Scores> SortedScoreList = scoreList.OrderBy(x => x.Score).ToList();
 
 			// set rank = i
-			for (int i = 0; i < SortedScoreList.Count(); i++)
+			for (int i = 0; i < scoreList.Count(); i++)
 			{
-				SortedScoreList[i].Rank = i;
+				scoreList[i].Rank = i + 1;
 			}
 
 			// check and fix ranks in instances of ties
 			for (int i = 1; i < scoreList.Count(); i++)
 			{
-				double score = SortedScoreList[i].Score;
-				double prevScore = SortedScoreList[i - 1].Score;
+				double score = scoreList[i].Score;
+				double prevScore = scoreList[i - 1].Score;
 
 				// check if dup. If so, set rank to rank of previous item
 				if (score == prevScore)
-					SortedScoreList[i].Rank = SortedScoreList[i - 1].Rank;
+					scoreList[i].Rank = scoreList[i - 1].Rank;
 			}
 
-			dataGrid_TASData.Rows.Clear();
-			WriteToPointGrid(SortedScoreList);
+			dataGrid_TASPoints.Rows.Clear();
+			WriteToPointGrid(scoreList);
 		}
 
-		private void dataGrid_TASData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+		private void competitionLeaderboardToolStripMenuItem2_Click(object sender, EventArgs e)
 		{
-			ReRank();
+			var data = CompObjectCompile();
+
+			NumberConverter numConv = new NumberConverter();
+
+			string output = "**__Task XX Results:__**\r\n";
+			string temp;
+
+			int boldLimit = 5;
+			double nonDQs = 0;
+
+			// get number of nonDQs
+			foreach (var item in data)
+				if (item.DQ == false) { nonDQs++; }
+
+			// set bold limit
+			if (nonDQs < boldLimit)
+				boldLimit = (int)Math.Ceiling(nonDQs / 2);
+
+			// Non DQs
+			foreach (var item in data)
+			{
+				if (item.DQ == false)
+				{
+					temp = $"{numConv.AddOrdinal(item.Rank)}. {item.Username} {numConv.FormatTime(item.Frames)}";
+
+					if (item.Rank <= boldLimit)
+					{
+						output += $"**{temp}**\r\n";
+					}
+					else
+					{
+						output += $"{temp}\r\n";
+					}
+				}
+			}
+
+			output += "\r\n";
+
+			// DQs
+			foreach (var item in data)
+			{
+				if (item.DQ == true)
+				{
+					output += $"DQ. {item.Username} {item.Comments}\r\n";
+				}
+			}
+
+			PopUpDisplay(output);
+		}
+
+		private void pointLeaderboardToolStripMenuItem2_Click(object sender, EventArgs e)
+		{
+			var data = ScoreObjectCompile();
+
+			NumberConverter numConv = new NumberConverter();
+
+			string output = "**__Score After Task XX:__**\r\n";
+			string temp;
+
+			int boldLimit = 3;
+			double total = data.Count;
+			
+			// set bold limit
+			if (total < boldLimit)
+				boldLimit = (int)Math.Ceiling(total / 2);
+
+			// Output
+			foreach (var item in data)
+			{
+				temp = $"{numConv.AddOrdinal(item.Rank)}. {item.Username}: {item.Score}";
+
+				if (item.Rank <= boldLimit)
+				{
+					output += $"**{temp}**\r\n";
+				}
+				else
+				{
+					output += $"{temp}\r\n";
+				}
+			}
+
+			PopUpDisplay(output);
+		}
+
+		public void PopUpDisplay(string output)
+		{
+			// Display in new popup form
+			frm_PlainTextPopup ptp = new frm_PlainTextPopup();
+			ptp.displayText = output;
+			ptp.ShowDialog();
 		}
 	}
 }
