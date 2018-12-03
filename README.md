@@ -31,7 +31,15 @@ You can indevidually open/save both the competition leaderboards and points lead
 
 ![alt text](http://imgs.fyi/img/6t2g.png)
 
-Finally, hitting the "Score Points" button in the top toolbar, scores all the runners in the compeition. If you have a .TASs file open, the scores of existing users are added to their previous score. If not, they are added as a new user.
+By hitting the "Score Points" button in the top toolbar, scores all the runners in the compeition. If you have a .TASs file open, the scores of existing users are added to their previous score. If not, they are added as a new user.
 
 ![alt text](http://imgs.fyi/img/6t2h.png)
+
+Once ready to export to release the results of the competition, you can chose what to export as plaintext from the "Export Plain Text" toolbar option. You can export both the competition and points leaderboards.
+
+![alt text](http://imgs.fyi/img/6t2o.png)
+
+Depending on the number of submitees, the number of bolded names at the top of each list changes. The competition export has a max of 5, where the point export has a max of 3 bolded names.
+
+![alt text](http://imgs.fyi/img/6t2p.png)
 
