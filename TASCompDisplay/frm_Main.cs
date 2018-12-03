@@ -249,7 +249,10 @@ namespace TASCompDisplay
 
 			for (int row = 0; row < dataGrid_TASData.Rows.Count - 1; row++)
 			{
-				int rank = row + 1;
+				//int rank = row + 1;
+				int rank = -1;
+				try { rank = Convert.ToInt32(dataGrid_TASData.Rows[row].Cells[0].Value); }
+				catch { rank = -1; }
 
 				int start = 0;
 				try { start = Convert.ToInt32(dataGrid_TASData.Rows[row].Cells[2].Value); }
@@ -344,29 +347,24 @@ namespace TASCompDisplay
 		{
 			Dictionary<string, int> timeDict = new Dictionary<string, int>();
 
-			// sort compList 
-			//List<Competitor> SortedCompList = compList.OrderBy(x => x.Frames).ToList();
-
 			// Sort by Frames
 			dataGrid_TASData.Sort(dataGrid_TASData.Columns[4], ListSortDirection.Ascending);
 
 			List<Competitor> compList = CompObjectCompile();
 
-			// set rank = i
 			// if a DQ'd run, set to last place
+			// Set rank for SORTED list
 			int Rank = 1;
-			for (int i = 0; i < compList.Count(); i++)
+			foreach (var item in compList)
 			{
-				if (compList[i].DQ == true)
+				if (item.DQ == true)
 				{
-					compList[i].Rank = compList.Count();
+					item.Rank = compList.Count();
 				}
-
-				else if (compList[i].DQ == false)
+				else if (item.DQ == false)
 				{
-					compList[i].Rank = Rank++;
+					item.Rank = Rank++;
 				}
-
 			}
 
 			// check and fix ranks in instances of ties
@@ -381,7 +379,6 @@ namespace TASCompDisplay
 					compList[i].Rank = compList[i - 1].Rank;
 			}
 
-
 			dataGrid_TASData.Rows.Clear();
 			WriteToDataGrid(compList);
 		}
@@ -389,6 +386,7 @@ namespace TASCompDisplay
 		private void rerankBoardToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			ReRank();
+			tab_DataGrids.SelectTab(0);
 		}
 
 		public void ReRank()
@@ -408,7 +406,10 @@ namespace TASCompDisplay
 										 MessageBoxButtons.YesNo);
 
 				if (confirmResult == DialogResult.Yes)
+				{
 					scoreLeaderboard();
+					tab_DataGrids.SelectTab(1);
+				}
 				else { }
 			}
 			catch (Exception err)
@@ -425,9 +426,9 @@ namespace TASCompDisplay
 			// Add points, and add to pre-existing points if they exist
 			// Save
 
+			// add loaded scores to listed scores, then sort
 			addPoints();
 
-			// add loaded scores to listed scores, then sort
 			GridSortPointRank();
 		}
 
@@ -446,22 +447,26 @@ namespace TASCompDisplay
 
 				for (int i = 0; i < pointsboard.Count; i++)
 				{
+					// if user previously has points && !dq
 					if (leaderUsername.Username == pointsboard[i].Username && !leaderUsername.DQ)
 					{
 						pointsboard[i].Score += ScoreCalc(leaderUsername.Rank, leaderboard.Count);
 						LeaderInPoints = true;
 					}
+					// if user previously has points && dq
 					else if (leaderUsername.Username == pointsboard[i].Username && leaderUsername.DQ)
 					{
 						pointsboard[i].Score += 0;
 						LeaderInPoints = true;
 					}
 				}
+				// if new user && !dq
 				if (!LeaderInPoints && !leaderUsername.DQ)
 				{
 					Scores name = new Scores(leaderUsername.Rank, leaderUsername.Username, ScoreCalc(leaderUsername.Rank, leaderboard.Count));
 					pointsboard.Add(name);
 				}
+				// if new user && dq
 				else if (!LeaderInPoints && leaderUsername.DQ)
 				{
 					Scores name = new Scores(leaderUsername.Rank, leaderUsername.Username, 0);
@@ -475,7 +480,6 @@ namespace TASCompDisplay
 
 		public double ScoreCalc(int place, int total)
 		{
-			//double score = ((30 / Math.Pow(total, 5)) * Math.Pow((total - place + 1), 5)) + (10 * ((total - place + 1) / total)) + 10;
 			double x = place;
 			double a = total;
 			double score = (30 / Math.Pow(a, 5)) * Math.Pow((a - x + 1), 5) + ((10 * (a - x + 1) / a)) + 10;
@@ -529,9 +533,6 @@ namespace TASCompDisplay
 		{
 			dataGrid_TASPoints.Sort(dataGrid_TASPoints.Columns[2], ListSortDirection.Descending);
 			List<Scores> scoreList = ScoreObjectCompile();
-
-			//// sort compList 
-			//List<Scores> SortedScoreList = scoreList.OrderBy(x => x.Score).ToList();
 
 			// set rank = i
 			for (int i = 0; i < scoreList.Count(); i++)
@@ -617,7 +618,7 @@ namespace TASCompDisplay
 
 			int boldLimit = 3;
 			double total = data.Count;
-			
+
 			// set bold limit
 			if (total < boldLimit)
 				boldLimit = (int)Math.Ceiling(total / 2);
