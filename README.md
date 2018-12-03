@@ -1,6 +1,7 @@
 # TAS-Competition-Compiler-Display-Tool
 A tool used to track progress in TAS competitions, full with submission and point tracking.
 
+The latest version can be [found here](https://github.com/TimeTravelPenguin/TAS-Competition-Compiler-Display-Tool/releases)!
 ## Current features:
 - Simple tools to save data on competitor's information including username, start and end frames, disqualification comments, and a points leaderboard for multi-task competitions
 - Saving and loading file
