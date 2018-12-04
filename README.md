@@ -12,7 +12,7 @@ The latest version can be [found here](https://github.com/TimeTravelPenguin/TAS-
 
 # How to use TASCCDT
 ### [Click here for video demonstration (v1.0.4)](https://www.youtube.com/watch?v=AwPjAeGKUu8)
-Here is the main window you will see upon launching v0.1.3:
+Here is the main window you will see upon launching v0.1.5:
 
 ![img 1](https://i.imgur.com/AMWakhA.png)
 
