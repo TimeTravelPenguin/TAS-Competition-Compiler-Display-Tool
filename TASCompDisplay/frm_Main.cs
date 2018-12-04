@@ -651,7 +651,7 @@ namespace TASCompDisplay
 			ptp.ShowDialog();
 		}
 
-		private void liveDisplayerToolStripMenuItem_Click(object sender, EventArgs e)
+		private void liveDisplayToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			ReRank();
 

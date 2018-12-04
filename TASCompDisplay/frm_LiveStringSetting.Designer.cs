@@ -43,7 +43,7 @@
 			// chk_Username
 			// 
 			this.chk_Username.AutoSize = true;
-			this.chk_Username.Location = new System.Drawing.Point(76, 12);
+			this.chk_Username.Location = new System.Drawing.Point(78, 12);
 			this.chk_Username.Name = "chk_Username";
 			this.chk_Username.Size = new System.Drawing.Size(74, 17);
 			this.chk_Username.TabIndex = 0;
@@ -53,17 +53,17 @@
 			// chk_Frames
 			// 
 			this.chk_Frames.AutoSize = true;
-			this.chk_Frames.Location = new System.Drawing.Point(156, 12);
+			this.chk_Frames.Location = new System.Drawing.Point(158, 12);
 			this.chk_Frames.Name = "chk_Frames";
-			this.chk_Frames.Size = new System.Drawing.Size(60, 17);
+			this.chk_Frames.Size = new System.Drawing.Size(41, 17);
 			this.chk_Frames.TabIndex = 1;
-			this.chk_Frames.Text = "Frames";
+			this.chk_Frames.Text = "VIs";
 			this.chk_Frames.UseVisualStyleBackColor = true;
 			// 
 			// chk_Time
 			// 
 			this.chk_Time.AutoSize = true;
-			this.chk_Time.Location = new System.Drawing.Point(215, 12);
+			this.chk_Time.Location = new System.Drawing.Point(205, 12);
 			this.chk_Time.Name = "chk_Time";
 			this.chk_Time.Size = new System.Drawing.Size(49, 17);
 			this.chk_Time.TabIndex = 2;
@@ -73,7 +73,7 @@
 			// chk_Rerecords
 			// 
 			this.chk_Rerecords.AutoSize = true;
-			this.chk_Rerecords.Location = new System.Drawing.Point(270, 12);
+			this.chk_Rerecords.Location = new System.Drawing.Point(260, 12);
 			this.chk_Rerecords.Name = "chk_Rerecords";
 			this.chk_Rerecords.Size = new System.Drawing.Size(75, 17);
 			this.chk_Rerecords.TabIndex = 3;
@@ -130,7 +130,7 @@
 			// chk_Rank
 			// 
 			this.chk_Rank.AutoSize = true;
-			this.chk_Rank.Location = new System.Drawing.Point(18, 12);
+			this.chk_Rank.Location = new System.Drawing.Point(20, 12);
 			this.chk_Rank.Name = "chk_Rank";
 			this.chk_Rank.Size = new System.Drawing.Size(52, 17);
 			this.chk_Rank.TabIndex = 9;
