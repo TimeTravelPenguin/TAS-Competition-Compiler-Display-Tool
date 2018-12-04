@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -63,6 +64,12 @@
     </Compile>
     <Compile Include="frm_LiveStringSetting.Designer.cs">
       <DependentUpon>frm_LiveStringSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_GraphDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_GraphDisplay.Designer.cs">
+      <DependentUpon>frm_GraphDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="NumberConverter.cs" />
     <Compile Include="frm_Main.cs">
@@ -100,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_PlainTextPopup.resx">
       <DependentUpon>frm_PlainTextPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_GraphDisplay.resx">
+      <DependentUpon>frm_GraphDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

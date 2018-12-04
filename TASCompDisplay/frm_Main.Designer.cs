@@ -84,6 +84,10 @@
 			this.PointPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.dataAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.graphDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.leaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.pointLeaderboardToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox_DQReasons.SuspendLayout();
@@ -102,7 +106,8 @@
             this.exportPlainTextToolStripMenuItem,
             this.rerankBoardToolStripMenuItem,
             this.scorePointsToolStripMenuItem,
-            this.liveDisplayToolStripMenuItem});
+            this.liveDisplayToolStripMenuItem,
+            this.dataAnalysisToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(935, 24);
@@ -572,6 +577,37 @@
 			this.PointScore.HeaderText = "Score";
 			this.PointScore.Name = "PointScore";
 			// 
+			// dataAnalysisToolStripMenuItem
+			// 
+			this.dataAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.graphDisplayToolStripMenuItem});
+			this.dataAnalysisToolStripMenuItem.Name = "dataAnalysisToolStripMenuItem";
+			this.dataAnalysisToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+			this.dataAnalysisToolStripMenuItem.Text = "&Data Analysis (beta)";
+			// 
+			// graphDisplayToolStripMenuItem
+			// 
+			this.graphDisplayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.leaderboardToolStripMenuItem,
+            this.pointLeaderboardToolStripMenuItem3});
+			this.graphDisplayToolStripMenuItem.Name = "graphDisplayToolStripMenuItem";
+			this.graphDisplayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.graphDisplayToolStripMenuItem.Text = "Graph Display";
+			// 
+			// leaderboardToolStripMenuItem
+			// 
+			this.leaderboardToolStripMenuItem.Name = "leaderboardToolStripMenuItem";
+			this.leaderboardToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+			this.leaderboardToolStripMenuItem.Text = "Competition Leaderboard";
+			this.leaderboardToolStripMenuItem.Click += new System.EventHandler(this.leaderboardToolStripMenuItem_Click);
+			// 
+			// pointLeaderboardToolStripMenuItem3
+			// 
+			this.pointLeaderboardToolStripMenuItem3.Name = "pointLeaderboardToolStripMenuItem3";
+			this.pointLeaderboardToolStripMenuItem3.Size = new System.Drawing.Size(210, 22);
+			this.pointLeaderboardToolStripMenuItem3.Text = "Point Leaderboard";
+			this.pointLeaderboardToolStripMenuItem3.Click += new System.EventHandler(this.pointLeaderboardToolStripMenuItem3_Click);
+			// 
 			// frm_Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -671,6 +707,10 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn Rerecords;
 		private System.Windows.Forms.DataGridViewCheckBoxColumn DQ;
 		private System.Windows.Forms.DataGridViewTextBoxColumn DQReason;
+		private System.Windows.Forms.ToolStripMenuItem dataAnalysisToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem graphDisplayToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem leaderboardToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem3;
 	}
 }
 

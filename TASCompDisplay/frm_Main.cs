@@ -681,5 +681,22 @@ namespace TASCompDisplay
 				MessageBox.Show("Please ensure you have at least one competitor in the competition leaderboard", "Not enough competitors");
 			}
 		}
+
+		private void leaderboardToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			frm_GraphDisplay gd = new frm_GraphDisplay();
+			gd.compList = CompObjectCompile();
+			gd.optionMode = 1;
+			gd.Show();
+		}
+
+		private void pointLeaderboardToolStripMenuItem3_Click(object sender, EventArgs e)
+		{
+			frm_GraphDisplay gd = new frm_GraphDisplay();
+			gd.scoreList = ScoreObjectCompile();
+			gd.optionMode = 2;
+			gd.Show();
+			
+		}
 	}
 }
