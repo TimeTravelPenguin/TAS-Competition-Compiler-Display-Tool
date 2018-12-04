@@ -6,9 +6,7 @@ The latest version can be [found here](https://github.com/TimeTravelPenguin/TAS-
 - Simple tools to save data on competitor's information including username, start and end frames, disqualification comments, and a points leaderboard for multi-task competitions
 - Saving and loading file
 - Plain text output for both the competition leaderboard and the points leaderboard
-
-## Coming soon:
-- Live output of competitor information to use with livestream information display. You can output one user at a time, displaying their place, name, time, etc. so it can be displayed on stream
+- Live output of competitor information to use with livestream information display. You can output one user at a time, displaying their place, name, time, etc. so it can be displayed on stream. Furthermore, you can customise the variables displayed, and their order, in the outputted string. 
 
 # How to use TASCCDT
 ### [Click here for video demonstration (v1.0.4)](https://www.youtube.com/watch?v=AwPjAeGKUu8)
