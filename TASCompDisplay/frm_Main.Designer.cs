@@ -45,6 +45,10 @@
 			this.rerankBoardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.scorePointsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.liveDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.dataAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.graphDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.leaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.pointLeaderboardToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel_CurrentFile = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel_OpenedFile = new System.Windows.Forms.ToolStripStatusLabel();
@@ -66,7 +70,7 @@
 			this.lbl_addStarting = new System.Windows.Forms.Label();
 			this.lbl_addEnding = new System.Windows.Forms.Label();
 			this.lbl_addRerecords = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
+			this.lbl_AddCompetitor = new System.Windows.Forms.Label();
 			this.dataGrid_TASData = new System.Windows.Forms.DataGridView();
 			this.Place = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,10 +88,6 @@
 			this.PointPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.dataAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.graphDisplayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.leaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.pointLeaderboardToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox_DQReasons.SuspendLayout();
@@ -101,26 +101,26 @@
 			// menuStrip
 			// 
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.aboutToolStripMenuItem,
-            this.exportPlainTextToolStripMenuItem,
-            this.rerankBoardToolStripMenuItem,
-            this.scorePointsToolStripMenuItem,
-            this.liveDisplayToolStripMenuItem,
-            this.dataAnalysisToolStripMenuItem});
+			this.fileToolStripMenuItem,
+			this.aboutToolStripMenuItem,
+			this.exportPlainTextToolStripMenuItem,
+			this.rerankBoardToolStripMenuItem,
+			this.scorePointsToolStripMenuItem,
+			this.liveDisplayToolStripMenuItem,
+			this.dataAnalysisToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
-			this.menuStrip.Size = new System.Drawing.Size(935, 24);
+			this.menuStrip.Size = new System.Drawing.Size(942, 24);
 			this.menuStrip.TabIndex = 1;
 			this.menuStrip.Text = "menuStrip1";
 			// 
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
-            this.saveToolStripMenuItem,
-            this.exitToolStripMenuItem});
+			this.newToolStripMenuItem,
+			this.openToolStripMenuItem,
+			this.saveToolStripMenuItem,
+			this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "&File";
@@ -135,8 +135,8 @@
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.competitionLeaderboardToolStripMenuItem1,
-            this.pointLeaderboardToolStripMenuItem1});
+			this.competitionLeaderboardToolStripMenuItem1,
+			this.pointLeaderboardToolStripMenuItem1});
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
 			this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
 			this.openToolStripMenuItem.Text = "&Open";
@@ -158,8 +158,8 @@
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.competitionLeaderboardToolStripMenuItem,
-            this.pointLeaderboardToolStripMenuItem});
+			this.competitionLeaderboardToolStripMenuItem,
+			this.pointLeaderboardToolStripMenuItem});
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
 			this.saveToolStripMenuItem.Text = "&Save";
@@ -195,8 +195,8 @@
 			// exportPlainTextToolStripMenuItem
 			// 
 			this.exportPlainTextToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.competitionLeaderboardToolStripMenuItem2,
-            this.pointLeaderboardToolStripMenuItem2});
+			this.competitionLeaderboardToolStripMenuItem2,
+			this.pointLeaderboardToolStripMenuItem2});
 			this.exportPlainTextToolStripMenuItem.Name = "exportPlainTextToolStripMenuItem";
 			this.exportPlainTextToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
 			this.exportPlainTextToolStripMenuItem.Text = "&Export Plain Text";
@@ -236,14 +236,45 @@
 			this.liveDisplayToolStripMenuItem.Text = "&Live Display";
 			this.liveDisplayToolStripMenuItem.Click += new System.EventHandler(this.liveDisplayToolStripMenuItem_Click);
 			// 
+			// dataAnalysisToolStripMenuItem
+			// 
+			this.dataAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.graphDisplayToolStripMenuItem});
+			this.dataAnalysisToolStripMenuItem.Name = "dataAnalysisToolStripMenuItem";
+			this.dataAnalysisToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+			this.dataAnalysisToolStripMenuItem.Text = "&Data Analysis (beta)";
+			// 
+			// graphDisplayToolStripMenuItem
+			// 
+			this.graphDisplayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.leaderboardToolStripMenuItem,
+			this.pointLeaderboardToolStripMenuItem3});
+			this.graphDisplayToolStripMenuItem.Name = "graphDisplayToolStripMenuItem";
+			this.graphDisplayToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+			this.graphDisplayToolStripMenuItem.Text = "Graph Display";
+			// 
+			// leaderboardToolStripMenuItem
+			// 
+			this.leaderboardToolStripMenuItem.Name = "leaderboardToolStripMenuItem";
+			this.leaderboardToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+			this.leaderboardToolStripMenuItem.Text = "Competition Leaderboard";
+			this.leaderboardToolStripMenuItem.Click += new System.EventHandler(this.leaderboardToolStripMenuItem_Click);
+			// 
+			// pointLeaderboardToolStripMenuItem3
+			// 
+			this.pointLeaderboardToolStripMenuItem3.Name = "pointLeaderboardToolStripMenuItem3";
+			this.pointLeaderboardToolStripMenuItem3.Size = new System.Drawing.Size(210, 22);
+			this.pointLeaderboardToolStripMenuItem3.Text = "Point Leaderboard";
+			this.pointLeaderboardToolStripMenuItem3.Click += new System.EventHandler(this.pointLeaderboardToolStripMenuItem3_Click);
+			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel_CurrentFile,
-            this.toolStripStatusLabel_OpenedFile});
+			this.toolStripStatusLabel_CurrentFile,
+			this.toolStripStatusLabel_OpenedFile});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 356);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(935, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(942, 22);
 			this.statusStrip1.TabIndex = 2;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -430,14 +461,15 @@
 			this.lbl_addRerecords.TabIndex = 15;
 			this.lbl_addRerecords.Text = "Rerecords:";
 			// 
+			// lbl_AddCompetitor
 			// 
-			this.label1.Font = new System.Drawing.Font("Super Mario Odyssey", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(-2, 24);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(227, 37);
-			this.label1.TabIndex = 16;
-			this.label1.Text = "Add Competitor";
+			this.lbl_AddCompetitor.AutoSize = true;
+			this.lbl_AddCompetitor.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lbl_AddCompetitor.Location = new System.Drawing.Point(28, 29);
+			this.lbl_AddCompetitor.Name = "lbl_AddCompetitor";
+			this.lbl_AddCompetitor.Size = new System.Drawing.Size(174, 25);
+			this.lbl_AddCompetitor.TabIndex = 16;
+			this.lbl_AddCompetitor.Text = "Add Competitor";
 			// 
 			// dataGrid_TASData
 			// 
