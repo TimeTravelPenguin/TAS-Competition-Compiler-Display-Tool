@@ -430,32 +430,31 @@
 			this.lbl_addRerecords.TabIndex = 15;
 			this.lbl_addRerecords.Text = "Rerecords:";
 			// 
-			// label1
 			// 
-			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Super Mario Odyssey", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.Location = new System.Drawing.Point(-2, 24);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(227, 37);
 			this.label1.TabIndex = 16;
 			this.label1.Text = "Add Competitor";
+			this.lbl_AddCompetitor.Location = new System.Drawing.Point(28, 29);
 			// 
 			// dataGrid_TASData
 			// 
 			this.dataGrid_TASData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGrid_TASData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Place,
-            this.Username,
-            this.StartingFrame,
-            this.EndingFrame,
-            this.Frames,
-            this.Rerecords,
-            this.DQ,
-            this.DQReason});
+			this.Place,
+			this.Username,
+			this.StartingFrame,
+			this.EndingFrame,
+			this.Frames,
+			this.Rerecords,
+			this.DQ,
+			this.DQReason});
 			this.dataGrid_TASData.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGrid_TASData.Location = new System.Drawing.Point(3, 3);
 			this.dataGrid_TASData.Name = "dataGrid_TASData";
-			this.dataGrid_TASData.Size = new System.Drawing.Size(678, 294);
+			this.dataGrid_TASData.Size = new System.Drawing.Size(693, 294);
 			this.dataGrid_TASData.TabIndex = 17;
 			// 
 			// Place
@@ -518,12 +517,15 @@
 			// 
 			// tab_DataGrids
 			// 
+			this.tab_DataGrids.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+			| System.Windows.Forms.AnchorStyles.Left) 
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.tab_DataGrids.Controls.Add(this.tab_CompLeaderboard);
 			this.tab_DataGrids.Controls.Add(this.tab_PointLeaderboard);
 			this.tab_DataGrids.Location = new System.Drawing.Point(231, 27);
 			this.tab_DataGrids.Name = "tab_DataGrids";
 			this.tab_DataGrids.SelectedIndex = 0;
-			this.tab_DataGrids.Size = new System.Drawing.Size(692, 326);
+			this.tab_DataGrids.Size = new System.Drawing.Size(707, 326);
 			this.tab_DataGrids.TabIndex = 19;
 			// 
 			// tab_CompLeaderboard
@@ -532,7 +534,7 @@
 			this.tab_CompLeaderboard.Location = new System.Drawing.Point(4, 22);
 			this.tab_CompLeaderboard.Name = "tab_CompLeaderboard";
 			this.tab_CompLeaderboard.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_CompLeaderboard.Size = new System.Drawing.Size(684, 300);
+			this.tab_CompLeaderboard.Size = new System.Drawing.Size(699, 300);
 			this.tab_CompLeaderboard.TabIndex = 0;
 			this.tab_CompLeaderboard.Text = "Competition Leaderboard";
 			this.tab_CompLeaderboard.UseVisualStyleBackColor = true;
@@ -552,9 +554,9 @@
 			// 
 			this.dataGrid_TASPoints.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGrid_TASPoints.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PointPlace,
-            this.PointUsername,
-            this.PointScore});
+			this.PointPlace,
+			this.PointUsername,
+			this.PointScore});
 			this.dataGrid_TASPoints.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGrid_TASPoints.Location = new System.Drawing.Point(3, 3);
 			this.dataGrid_TASPoints.Name = "dataGrid_TASPoints";
@@ -577,45 +579,14 @@
 			this.PointScore.HeaderText = "Score";
 			this.PointScore.Name = "PointScore";
 			// 
-			// dataAnalysisToolStripMenuItem
-			// 
-			this.dataAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.graphDisplayToolStripMenuItem});
-			this.dataAnalysisToolStripMenuItem.Name = "dataAnalysisToolStripMenuItem";
-			this.dataAnalysisToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
-			this.dataAnalysisToolStripMenuItem.Text = "&Data Analysis (beta)";
-			// 
-			// graphDisplayToolStripMenuItem
-			// 
-			this.graphDisplayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.leaderboardToolStripMenuItem,
-            this.pointLeaderboardToolStripMenuItem3});
-			this.graphDisplayToolStripMenuItem.Name = "graphDisplayToolStripMenuItem";
-			this.graphDisplayToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.graphDisplayToolStripMenuItem.Text = "Graph Display";
-			// 
-			// leaderboardToolStripMenuItem
-			// 
-			this.leaderboardToolStripMenuItem.Name = "leaderboardToolStripMenuItem";
-			this.leaderboardToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-			this.leaderboardToolStripMenuItem.Text = "Competition Leaderboard";
-			this.leaderboardToolStripMenuItem.Click += new System.EventHandler(this.leaderboardToolStripMenuItem_Click);
-			// 
-			// pointLeaderboardToolStripMenuItem3
-			// 
-			this.pointLeaderboardToolStripMenuItem3.Name = "pointLeaderboardToolStripMenuItem3";
-			this.pointLeaderboardToolStripMenuItem3.Size = new System.Drawing.Size(210, 22);
-			this.pointLeaderboardToolStripMenuItem3.Text = "Point Leaderboard";
-			this.pointLeaderboardToolStripMenuItem3.Click += new System.EventHandler(this.pointLeaderboardToolStripMenuItem3_Click);
-			// 
 			// frm_Main
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(935, 378);
+			this.ClientSize = new System.Drawing.Size(942, 378);
 			this.Controls.Add(this.tab_DataGrids);
 			this.Controls.Add(this.btn_AddCompetitor);
-			this.Controls.Add(this.label1);
+			this.Controls.Add(this.lbl_AddCompetitor);
 			this.Controls.Add(this.lbl_addRerecords);
 			this.Controls.Add(this.lbl_addEnding);
 			this.Controls.Add(this.lbl_addStarting);
@@ -628,10 +599,10 @@
 			this.Controls.Add(this.txt_addUsername);
 			this.Controls.Add(this.statusStrip1);
 			this.Controls.Add(this.menuStrip);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
+			this.MinimumSize = new System.Drawing.Size(958, 417);
 			this.Name = "frm_Main";
 			this.Text = "TAS Comp Display Tool";
 			this.menuStrip.ResumeLayout(false);
@@ -670,7 +641,7 @@
 		private System.Windows.Forms.Label lbl_addEnding;
 		private System.Windows.Forms.Label lbl_addRerecords;
 		private System.Windows.Forms.CheckBox chk_DQ_M64Early;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lbl_AddCompetitor;
 		private System.Windows.Forms.DataGridView dataGrid_TASData;
 		private System.Windows.Forms.Label lbl_DQ_Other;
 		private System.Windows.Forms.TextBox txt_DQ_Other;
