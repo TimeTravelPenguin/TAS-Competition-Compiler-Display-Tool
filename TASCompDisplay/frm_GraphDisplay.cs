@@ -17,6 +17,8 @@ namespace TASCompDisplay
 		public List<Scores> scoreList { get; set; }
 		public int optionMode { get; set; }
 
+		NumberConverter nc = new NumberConverter();
+
 		public frm_GraphDisplay()
 		{
 			InitializeComponent();
@@ -24,17 +26,91 @@ namespace TASCompDisplay
 
 		private void GraphDisplay_Load(object sender, EventArgs e)
 		{
+			int population = 0;
+			double average = 0;
+			double sd = 0;
+			double min = 0;
+			double max = 0;
+
 			switch (optionMode)
 			{
 				case 1:
 					GraphCompetitionLeaderbaord();
+
+					#region case 1 Data
+					population = compList.Count;
+
+					// average
+					foreach (var item in compList)
+					{
+						if (!item.DQ)
+						{
+							average += item.Frames;
+
+							max = item.Frames;
+						}
+					}
+					average /= population;
+
+					min = compList[0].Frames;
+
+					// min max range label
+					lbl_data_min.Text = $"Min: {min} VIs ({nc.FormatTime(min)})";
+					lbl_data_max.Text = $"Max: {max} VIs ({nc.FormatTime(max)})";
+					lbl_data_range.Text = $"Range: {max - min} VIs ({nc.FormatTime(max - min)})";
+
+					//standard div
+					foreach (var item in compList)
+						if (!item.DQ)
+							sd += Math.Pow((item.Frames - average), 2);
+					sd = Math.Sqrt(sd / population);
+
+					// change label display information
+					lbl_data_population.Text = $"Data population: {population}";
+					lbl_data_average.Text = $"Data average: {average} VIs ({nc.FormatTime(average)})";
+					lbl_data_standarddiv.Text = $"Standard deviation: {Math.Round(sd, 5)} VIs ({nc.FormatTime(sd)})";
+					#endregion
+
 					break;
 				case 2:
 					GraphPointLeaderbaord();
+
+					#region case 2 Data
+					population = scoreList.Count;
+
+					// average
+					foreach (var item in scoreList)
+					{
+						average += item.Score;
+						max = item.Score;
+					}
+					average /= population;
+
+					min = scoreList[0].Score;
+
+					// min max range label
+					lbl_data_min.Text = $"Min: {min} points";
+					lbl_data_max.Text = $"Max: {max} points";
+					lbl_data_range.Text = $"Range: {min - max} points";
+
+					//standard div
+					foreach (var item in scoreList)
+						sd += Math.Pow((item.Score - average), 2);
+					sd = Math.Sqrt(sd / population);
+
+					// change label display information
+					lbl_data_population.Text = $"Data population: {population}";
+					lbl_data_average.Text = $"Data average: {average} points";
+					lbl_data_standarddiv.Text = $"Standard deviation: {Math.Round(sd, 5)} points";
+					#endregion
+
 					break;
 				default:
 					break;
 			}
+
+			
+
 		}
 
 		public void GraphCompetitionLeaderbaord()

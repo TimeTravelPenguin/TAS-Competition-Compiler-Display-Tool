@@ -684,6 +684,8 @@ namespace TASCompDisplay
 
 		private void leaderboardToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			ReRank();
+
 			frm_GraphDisplay gd = new frm_GraphDisplay();
 			gd.compList = CompObjectCompile();
 			gd.optionMode = 1;
