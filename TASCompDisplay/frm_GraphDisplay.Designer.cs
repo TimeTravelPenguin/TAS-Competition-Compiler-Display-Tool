@@ -28,9 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.chartGraph = new System.Windows.Forms.DataVisualization.Charting.Chart();
 			this.InformationGroupBox = new System.Windows.Forms.GroupBox();
 			this.lbl_data_population = new System.Windows.Forms.Label();
@@ -45,17 +45,17 @@
 			// 
 			// chartGraph
 			// 
-			chartArea1.Name = "ChartArea1";
-			this.chartGraph.ChartAreas.Add(chartArea1);
+			chartArea2.Name = "ChartArea1";
+			this.chartGraph.ChartAreas.Add(chartArea2);
 			this.chartGraph.Dock = System.Windows.Forms.DockStyle.Fill;
-			legend1.Name = "Legend1";
-			this.chartGraph.Legends.Add(legend1);
+			legend2.Name = "Legend1";
+			this.chartGraph.Legends.Add(legend2);
 			this.chartGraph.Location = new System.Drawing.Point(0, 0);
 			this.chartGraph.Name = "chartGraph";
-			series1.ChartArea = "ChartArea1";
-			series1.Legend = "Legend1";
-			series1.Name = "Series1";
-			this.chartGraph.Series.Add(series1);
+			series2.ChartArea = "ChartArea1";
+			series2.Legend = "Legend1";
+			series2.Name = "Series1";
+			this.chartGraph.Series.Add(series2);
 			this.chartGraph.Size = new System.Drawing.Size(709, 522);
 			this.chartGraph.TabIndex = 0;
 			this.chartGraph.Text = "chart1";
@@ -139,7 +139,7 @@
 			this.Controls.Add(this.chartGraph);
 			this.Controls.Add(this.InformationGroupBox);
 			this.Name = "frm_GraphDisplay";
-			this.Text = "GraphDisplay";
+			this.Text = "Graph and Information Display";
 			this.Load += new System.EventHandler(this.GraphDisplay_Load);
 			((System.ComponentModel.ISupportInitialize)(this.chartGraph)).EndInit();
 			this.InformationGroupBox.ResumeLayout(false);
