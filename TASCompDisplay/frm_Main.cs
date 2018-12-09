@@ -22,6 +22,7 @@ namespace TASCompDisplay
 		public frm_Main()
 		{
 			InitializeComponent();
+            lbl_AddCompetitor.Font = Program.SuperMario256;
 		}
 
 		private void competitionLeaderboardToolStripMenuItem_Click(object sender, EventArgs e)
