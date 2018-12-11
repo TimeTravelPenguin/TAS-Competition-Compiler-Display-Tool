@@ -75,6 +75,12 @@
     <Compile Include="frm_GraphDisplay.Designer.cs">
       <DependentUpon>frm_GraphDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_PlainImport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_PlainImport.Designer.cs">
+      <DependentUpon>frm_PlainImport.cs</DependentUpon>
+    </Compile>
     <Compile Include="NumberConverter.cs" />
     <Compile Include="frm_Main.cs">
       <SubType>Form</SubType>
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_About.resx">
       <DependentUpon>frm_About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_PlainImport.resx">
+      <DependentUpon>frm_PlainImport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_PlainTextPopup.resx">
       <DependentUpon>frm_PlainTextPopup.cs</DependentUpon>

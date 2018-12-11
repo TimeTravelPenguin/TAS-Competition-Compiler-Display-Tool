@@ -700,5 +700,15 @@ namespace TASCompDisplay
 			gd.Show();
 			
 		}
+
+		private void plainTextImportToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			frm_PlainImport pi = new frm_PlainImport();
+			pi.ShowDialog();
+
+			WriteToDataGrid(pi.compList);
+
+			GridSortRank();
+		}
 	}
 }

@@ -50,8 +50,8 @@ namespace TASCompDisplay
 							max = item.Frames;
 						}
 					}
-					average /= population;
-
+					average = average = Math.Round(average / population, 5);
+					
 					min = compList[0].Frames;
 
 					// min max range label
@@ -84,7 +84,7 @@ namespace TASCompDisplay
 						average += item.Score;
 						max = item.Score;
 					}
-					average /= population;
+					average = average = Math.Round(average / population, 5);
 
 					min = scoreList[0].Score;
 
