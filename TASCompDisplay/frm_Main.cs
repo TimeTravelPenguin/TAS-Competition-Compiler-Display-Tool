@@ -270,8 +270,7 @@ namespace TASCompDisplay
 				bool dq;
 				try { dq = (bool)dataGrid_TASData.Rows[row].Cells[6].Value; }
 				catch { dq = false; }
-
-				//MessageBox.Show(dq.ToString());
+				
 
 				string comments = $"{dataGrid_TASData.Rows[row].Cells[7].Value}";
 
@@ -422,12 +421,6 @@ namespace TASCompDisplay
 
 		public void scoreLeaderboard()
 		{
-			// TODO:
-			// Ask if existing file exists
-			// Read points from file
-			// Add points, and add to pre-existing points if they exist
-			// Save
-
 			// add loaded scores to listed scores, then sort
 			addPoints();
 
