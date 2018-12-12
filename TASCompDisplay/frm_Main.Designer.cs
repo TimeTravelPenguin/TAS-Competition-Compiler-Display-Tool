@@ -88,6 +88,7 @@
 			this.PointPlace = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.PointScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.plainTextImportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.groupBox_DQReasons.SuspendLayout();
@@ -101,13 +102,14 @@
 			// menuStrip
 			// 
 			this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.fileToolStripMenuItem,
-			this.aboutToolStripMenuItem,
-			this.exportPlainTextToolStripMenuItem,
-			this.rerankBoardToolStripMenuItem,
-			this.scorePointsToolStripMenuItem,
-			this.liveDisplayToolStripMenuItem,
-			this.dataAnalysisToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.aboutToolStripMenuItem,
+            this.exportPlainTextToolStripMenuItem,
+            this.plainTextImportToolStripMenuItem,
+            this.rerankBoardToolStripMenuItem,
+            this.scorePointsToolStripMenuItem,
+            this.liveDisplayToolStripMenuItem,
+            this.dataAnalysisToolStripMenuItem});
 			this.menuStrip.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip.Name = "menuStrip";
 			this.menuStrip.Size = new System.Drawing.Size(942, 24);
@@ -117,10 +119,10 @@
 			// fileToolStripMenuItem
 			// 
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.newToolStripMenuItem,
-			this.openToolStripMenuItem,
-			this.saveToolStripMenuItem,
-			this.exitToolStripMenuItem});
+            this.newToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "&File";
@@ -135,8 +137,8 @@
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.competitionLeaderboardToolStripMenuItem1,
-			this.pointLeaderboardToolStripMenuItem1});
+            this.competitionLeaderboardToolStripMenuItem1,
+            this.pointLeaderboardToolStripMenuItem1});
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
 			this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
 			this.openToolStripMenuItem.Text = "&Open";
@@ -158,8 +160,8 @@
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.competitionLeaderboardToolStripMenuItem,
-			this.pointLeaderboardToolStripMenuItem});
+            this.competitionLeaderboardToolStripMenuItem,
+            this.pointLeaderboardToolStripMenuItem});
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
 			this.saveToolStripMenuItem.Text = "&Save";
@@ -195,8 +197,8 @@
 			// exportPlainTextToolStripMenuItem
 			// 
 			this.exportPlainTextToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.competitionLeaderboardToolStripMenuItem2,
-			this.pointLeaderboardToolStripMenuItem2});
+            this.competitionLeaderboardToolStripMenuItem2,
+            this.pointLeaderboardToolStripMenuItem2});
 			this.exportPlainTextToolStripMenuItem.Name = "exportPlainTextToolStripMenuItem";
 			this.exportPlainTextToolStripMenuItem.Size = new System.Drawing.Size(105, 20);
 			this.exportPlainTextToolStripMenuItem.Text = "&Export Plain Text";
@@ -239,7 +241,7 @@
 			// dataAnalysisToolStripMenuItem
 			// 
 			this.dataAnalysisToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.graphDisplayToolStripMenuItem});
+            this.graphDisplayToolStripMenuItem});
 			this.dataAnalysisToolStripMenuItem.Name = "dataAnalysisToolStripMenuItem";
 			this.dataAnalysisToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
 			this.dataAnalysisToolStripMenuItem.Text = "&Data Analysis (beta)";
@@ -247,8 +249,8 @@
 			// graphDisplayToolStripMenuItem
 			// 
 			this.graphDisplayToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.leaderboardToolStripMenuItem,
-			this.pointLeaderboardToolStripMenuItem3});
+            this.leaderboardToolStripMenuItem,
+            this.pointLeaderboardToolStripMenuItem3});
 			this.graphDisplayToolStripMenuItem.Name = "graphDisplayToolStripMenuItem";
 			this.graphDisplayToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
 			this.graphDisplayToolStripMenuItem.Text = "Graph Display";
@@ -270,8 +272,8 @@
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.toolStripStatusLabel_CurrentFile,
-			this.toolStripStatusLabel_OpenedFile});
+            this.toolStripStatusLabel_CurrentFile,
+            this.toolStripStatusLabel_OpenedFile});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 356);
 			this.statusStrip1.Name = "statusStrip1";
 			this.statusStrip1.Size = new System.Drawing.Size(942, 22);
@@ -475,14 +477,14 @@
 			// 
 			this.dataGrid_TASData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGrid_TASData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.Place,
-			this.Username,
-			this.StartingFrame,
-			this.EndingFrame,
-			this.Frames,
-			this.Rerecords,
-			this.DQ,
-			this.DQReason});
+            this.Place,
+            this.Username,
+            this.StartingFrame,
+            this.EndingFrame,
+            this.Frames,
+            this.Rerecords,
+            this.DQ,
+            this.DQReason});
 			this.dataGrid_TASData.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGrid_TASData.Location = new System.Drawing.Point(3, 3);
 			this.dataGrid_TASData.Name = "dataGrid_TASData";
@@ -550,8 +552,8 @@
 			// tab_DataGrids
 			// 
 			this.tab_DataGrids.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-			| System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tab_DataGrids.Controls.Add(this.tab_CompLeaderboard);
 			this.tab_DataGrids.Controls.Add(this.tab_PointLeaderboard);
 			this.tab_DataGrids.Location = new System.Drawing.Point(231, 27);
@@ -577,7 +579,7 @@
 			this.tab_PointLeaderboard.Location = new System.Drawing.Point(4, 22);
 			this.tab_PointLeaderboard.Name = "tab_PointLeaderboard";
 			this.tab_PointLeaderboard.Padding = new System.Windows.Forms.Padding(3);
-			this.tab_PointLeaderboard.Size = new System.Drawing.Size(684, 300);
+			this.tab_PointLeaderboard.Size = new System.Drawing.Size(699, 300);
 			this.tab_PointLeaderboard.TabIndex = 1;
 			this.tab_PointLeaderboard.Text = "Point Leaderboard";
 			this.tab_PointLeaderboard.UseVisualStyleBackColor = true;
@@ -586,13 +588,13 @@
 			// 
 			this.dataGrid_TASPoints.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGrid_TASPoints.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-			this.PointPlace,
-			this.PointUsername,
-			this.PointScore});
+            this.PointPlace,
+            this.PointUsername,
+            this.PointScore});
 			this.dataGrid_TASPoints.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGrid_TASPoints.Location = new System.Drawing.Point(3, 3);
 			this.dataGrid_TASPoints.Name = "dataGrid_TASPoints";
-			this.dataGrid_TASPoints.Size = new System.Drawing.Size(678, 294);
+			this.dataGrid_TASPoints.Size = new System.Drawing.Size(693, 294);
 			this.dataGrid_TASPoints.TabIndex = 0;
 			// 
 			// PointPlace
@@ -610,6 +612,13 @@
 			// 
 			this.PointScore.HeaderText = "Score";
 			this.PointScore.Name = "PointScore";
+			// 
+			// plainTextImportToolStripMenuItem
+			// 
+			this.plainTextImportToolStripMenuItem.Name = "plainTextImportToolStripMenuItem";
+			this.plainTextImportToolStripMenuItem.Size = new System.Drawing.Size(111, 20);
+			this.plainTextImportToolStripMenuItem.Text = "&Import Plain Text ";
+			this.plainTextImportToolStripMenuItem.Click += new System.EventHandler(this.plainTextImportToolStripMenuItem_Click);
 			// 
 			// frm_Main
 			// 
@@ -714,6 +723,7 @@
 		private System.Windows.Forms.ToolStripMenuItem graphDisplayToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem leaderboardToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem pointLeaderboardToolStripMenuItem3;
+		private System.Windows.Forms.ToolStripMenuItem plainTextImportToolStripMenuItem;
 	}
 }
 

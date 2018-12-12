@@ -677,6 +677,8 @@ namespace TASCompDisplay
 
 		private void leaderboardToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			ReRank();
+
 			frm_GraphDisplay gd = new frm_GraphDisplay();
 			gd.compList = CompObjectCompile();
 			gd.optionMode = 1;
@@ -690,6 +692,16 @@ namespace TASCompDisplay
 			gd.optionMode = 2;
 			gd.Show();
 			
+		}
+
+		private void plainTextImportToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			frm_PlainImport pi = new frm_PlainImport();
+			pi.ShowDialog();
+
+			WriteToDataGrid(pi.compList);
+
+			GridSortRank();
 		}
 	}
 }
