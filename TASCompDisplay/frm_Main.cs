@@ -494,9 +494,14 @@ namespace TASCompDisplay
 
         public double ScoreCalc(int place, int total)
         {
-            double x = place;
-            double a = total;
-            double score = (30 / Math.Pow(a, 5)) * Math.Pow((a - x + 1), 5) + ((10 * (a - x + 1) / a)) + 10;
+            double k = place;
+            double n = total;
+            double x = (n - k + 1) / n;
+            // Old score formula
+            //double score = (30 / Math.Pow(a, 5)) * Math.Pow((a - x + 1), 5) + ((10 * (a - x + 1) / a)) + 10;
+
+            // New formula
+            double score = (15 * Math.Pow(x, 6)) + (10 * Math.Pow(x, 4)) + (5 * Math.Pow(x, 2)) + (14 * x) + 6;
             return Math.Round(score, 1);
         }
 
